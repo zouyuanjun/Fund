@@ -9,29 +9,19 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.zou.fund.R;
 import com.zou.fund.adapter.Rv_contrast_adapter;
-import com.zou.fund.data.Fund_cc_bean;
+import com.zou.fund.sqlbean.Fund_cc_bean;
 import com.zou.fund.data.Fund_position_arraylist;
 import com.zou.fund.parse.Chicang;
 import com.zou.fund.util.Network;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Created by 邹远君 on 2017/12/15.
@@ -52,10 +42,14 @@ public class Fr_contrast extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             String s1= (String) msg.obj;
-            new Chicang(s1);
+            try {
+                new Chicang(s1);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
     };
-    String url="http://finance.sina.com.cn/fund/quotes/161725/bc.shtml";
+    String url="http://fund.stockstar.com/fund2008/tab/fundallcode.htm";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

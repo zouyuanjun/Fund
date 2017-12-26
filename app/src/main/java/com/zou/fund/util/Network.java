@@ -52,7 +52,8 @@ public class Network {
                 .build();
 
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        String ruslt=new String(response.body().bytes(),"gb2312");
+        return ruslt;
 
 
     }

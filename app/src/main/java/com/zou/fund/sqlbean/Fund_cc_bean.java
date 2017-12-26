@@ -1,4 +1,4 @@
-package com.zou.fund.data;
+package com.zou.fund.sqlbean;
 
 /**
  * Created by 邹远君 on 2017/12/24.
