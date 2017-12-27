@@ -11,6 +11,7 @@ import com.zou.fund.bar.ChildFragment;
 import com.zou.fund.bar.NavitationScrollLayout;
 import com.zou.fund.bar.ViewPagerAdapter;
 import com.zou.fund.fragment.Fr_contrast;
+import com.zou.fund.fragment.Fr_test;
 
 import org.litepal.tablemanager.Connector;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         fragments1.add(new ChildFragment());
         fragments1.add(new ChildFragment());
         fragments1.add(new Fr_contrast());
-        fragments1.add(new ChildFragment());
+        fragments1.add(new Fr_test());
         viewPagerAdapter1 = new ViewPagerAdapter(getSupportFragmentManager(), fragments1);
         viewPager1.setAdapter(viewPagerAdapter1);
         navitationScrollLayout.setViewPager(this, titles1, viewPager1, R.color.color_333333, R.color.color_2581ff, 16, 20, 5, true,R.color.color_333333,1, 15f, 15f, 100);

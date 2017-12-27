@@ -78,10 +78,11 @@ public class Chicang {
             fund_id_bean.save();
 
         }*/
-        String[] strs=HTML.split("]");
-        for(int i=0,len=strs.length;i<len;i++){
+       String s="\\[.*?]";
+        String[] strs=HTML.split(s);
+       /* for(int i=0,len=strs.length;i<len;i++){
             Log.d("444444",strs[i].toString());
-        }
+        }*/
         }
 
     }
