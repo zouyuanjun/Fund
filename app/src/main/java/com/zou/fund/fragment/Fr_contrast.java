@@ -9,19 +9,23 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.zou.fund.R;
 import com.zou.fund.adapter.Rv_contrast_adapter;
-import com.zou.fund.sqlbean.Fund_cc_bean;
+
 import com.zou.fund.data.Fund_position_arraylist;
 import com.zou.fund.parse.Chicang;
+import com.zou.fund.sqlbean.Fund_cc_bean;
 import com.zou.fund.util.Network;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+
+
 
 /**
  * Created by 邹远君 on 2017/12/15.
@@ -42,6 +46,7 @@ public class Fr_contrast extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             String s1= (String) msg.obj;
+            Log.d("55555","请求成功，返回数据");
             try {
                 new Chicang(s1);
             } catch (UnsupportedEncodingException e) {
@@ -49,7 +54,7 @@ public class Fr_contrast extends Fragment {
             }
         }
     };
-    String url="http://fund.stockstar.com/fund2008/tab/fundallcode.htm";
+    String url="http://fund.eastmoney.com/Data/Fund_JJJZ_Data.aspx?t=1&lx=1&letter=&gsid=&text=&sort=zdf,desc&page=1,9999&feature=|&dt=1514296528372&atfc=&onlySale=0";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

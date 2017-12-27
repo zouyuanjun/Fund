@@ -2,6 +2,7 @@ package com.zou.fund.util;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -38,6 +39,7 @@ public class Network {
                     message.what=what;
                     message.obj = s;
                     handler.sendMessage(message);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -50,9 +52,10 @@ public class Network {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-
         Response response = client.newCall(request).execute();
-        String ruslt=new String(response.body().bytes(),"gb2312");
+        String ruslt=new String(response.body().bytes(),"utf-8");
+        Log.d("55555","发起网络请求");
+
         return ruslt;
 
 

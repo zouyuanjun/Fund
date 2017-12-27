@@ -1,17 +1,28 @@
 package com.zou.fund.sqlbean;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by 邹远君 on 2017/12/24.
  * 基金持仓类
  */
 
-public class Fund_cc_bean {
+public class Fund_cc_bean extends DataSupport {
     private String name;
     private String zf;
     private String ratio;
     private String ratio_last;
     private String cgjj;
     private String cgjj_last;
+
+    public Fund_cc_bean(String name, String zf, String ratio, String ratio_last, String cgjj, String cgjj_last) {
+        this.name = name;
+        this.zf = zf;
+        this.ratio = ratio;
+        this.ratio_last = ratio_last;
+        this.cgjj = cgjj;
+        this.cgjj_last = cgjj_last;
+    }
 
     public void setName(String name) {
         this.name = name;

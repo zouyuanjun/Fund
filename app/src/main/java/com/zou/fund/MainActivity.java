@@ -1,5 +1,6 @@
 package com.zou.fund;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.view.ViewPager;
@@ -10,6 +11,8 @@ import com.zou.fund.bar.ChildFragment;
 import com.zou.fund.bar.NavitationScrollLayout;
 import com.zou.fund.bar.ViewPagerAdapter;
 import com.zou.fund.fragment.Fr_contrast;
+
+import org.litepal.tablemanager.Connector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewPager1 = (ViewPager) findViewById(R.id.viewpager1);
-
+        SQLiteDatabase db= Connector.getDatabase();
         navitationScrollLayout = (NavitationScrollLayout) findViewById(R.id.bar1);
 
         fragments1 =  new ArrayList<>();
