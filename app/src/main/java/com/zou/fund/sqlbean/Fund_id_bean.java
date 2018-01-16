@@ -9,10 +9,12 @@ import org.litepal.crud.DataSupport;
 public class Fund_id_bean extends DataSupport {
     String fund_name;
     String code;
+    int rata;
 
-    public Fund_id_bean(String fund_name, String code) {
+    public Fund_id_bean(String fund_name, String code, int rata) {
         this.fund_name = fund_name;
         this.code = code;
+        this.rata = rata;
     }
 
     public String getFund_name() {
@@ -29,5 +31,13 @@ public class Fund_id_bean extends DataSupport {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public int getRata() {
+        return rata;
+    }
+
+    public void setRata(int rata) {
+        this.rata = rata;
     }
 }

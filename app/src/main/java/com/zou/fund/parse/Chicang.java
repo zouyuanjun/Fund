@@ -16,6 +16,8 @@ import org.litepal.tablemanager.Connector;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by 邹远君 on 2017/12/24.
@@ -65,25 +67,18 @@ public class Chicang {
         litePal.addClassName(com.zou.fund.sqlbean.Fund_id_bean.class.getName());
         LitePal.use(litePal);
         SQLiteDatabase db= Connector.getDatabase();
-       /* Document doc=Jsoup.parse(HTML);
-        Element element=doc.getElementById("tableDiv");
-        Elements elements1=element.select("tbody");
-        Elements tr=elements1.select("tr");
-        Log.d("444","SIZE"+tr.size());
-        for (Element td:tr){
-            Elements result=td.select("td");
-            zf=result.get(3).text();
-            name=result.get(4).select("a[title]").text();
-            Fund_id_bean fund_id_bean=new Fund_id_bean(name,zf);
-            fund_id_bean.save();
+        String str = HTML;
+        String pattern = "\\[.*?]";
 
-        }*/
-       String s="\\[.*?]";
-        String[] strs=HTML.split(s);
-       /* for(int i=0,len=strs.length;i<len;i++){
-            Log.d("444444",strs[i].toString());
-        }*/
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(str);
+        while(m.find()) {
+            System.out.println(m.group());
         }
+
+
+
+    }
 
     }
 
