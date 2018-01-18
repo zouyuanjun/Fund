@@ -23,13 +23,12 @@ public class Fr_test extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fr_test, container, false);
-        textView=rootView.findViewById(R.id.tv_test);
-         textView2=rootView.findViewById(R.id.tv_test2);
+
          Test();
         return rootView;
     }
     public void Test(){
-        string="[2554[asd]fasd]";
+        string="23[2554[asd]fasd]";
         String s="\\[.*?]";
         String[] strs=string.split(s);
         for(int i=0,len=strs.length;i<len;i++){

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -44,29 +45,30 @@
             android:text="1101568w" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tv_myfund_chicang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_myfund_code"
             android:layout_marginStart="17dp"
             android:layout_marginTop="16dp"
-            android:layout_toEndOf="@+id/iv_gxjj"
+            android:layout_toEndOf="@+id/sd_gxjj"
             android:text="持仓：356" />
 
-        <ImageView
-            android:id="@+id/iv_gxjj"
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_gxjj"
             android:layout_width="451px"
             android:layout_height="281px"
             android:layout_alignStart="@+id/tv_myfund_name"
-            android:layout_alignTop="@+id/textView10"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            android:layout_alignTop="@+id/tv_myfund_chicang"
+            fresco:placeholderImage="@drawable/ic_launcher_foreground"
+           />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView10"
-            android:layout_below="@+id/textView10"
+            android:layout_alignStart="@+id/tv_myfund_chicang"
+            android:layout_below="@+id/tv_myfund_chicang"
             android:layout_marginTop="28dp"
             android:text="TextView" />
 
