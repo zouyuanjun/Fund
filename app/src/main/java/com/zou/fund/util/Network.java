@@ -54,7 +54,7 @@ public class Network {
                 .build();
         Response response = client.newCall(request).execute();
         String ruslt=new String(response.body().bytes(),"utf-8");
-        Log.d("55555","发起网络请求");
+        Log.d("55555","请求地址"+url);
 
         return ruslt;
 

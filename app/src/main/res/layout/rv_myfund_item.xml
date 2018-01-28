@@ -9,8 +9,8 @@
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp">
@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/tv_myfund_name"
             android:layout_toEndOf="@+id/tv_myfund_name"
+            android:paddingLeft="10dp"
             android:text="股票型" />
 
         <TextView
@@ -56,11 +57,11 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/sd_gxjj"
-            android:layout_width="451px"
-            android:layout_height="281px"
+            android:layout_width="676px"
+            android:layout_height="421px"
             android:layout_alignStart="@+id/tv_myfund_name"
             android:layout_alignTop="@+id/tv_myfund_chicang"
-            fresco:placeholderImage="@drawable/ic_launcher_foreground"
+            fresco:placeholderImage="@mipmap/ic_launcher_round"
            />
 
         <TextView
