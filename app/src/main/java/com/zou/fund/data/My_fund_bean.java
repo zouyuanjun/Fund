@@ -9,12 +9,12 @@ import android.widget.TextView;
 public class My_fund_bean {
     String myfund_name;             //持仓基金名称
     String myfund_type;          //类型
-    int myfund_code;          //基金代码
+    String myfund_code;          //基金代码
     Double myfund_num;       //持仓数量
     Double myfund_price;       //持仓数量
     String myfund_imurl;        //估算净值图片url
 
-    public My_fund_bean(String myfund_name, String myfund_type, int myfund_code, Double myfund_num, Double myfund_price, String myfund_imurl) {
+    public My_fund_bean(String myfund_name, String myfund_type, String myfund_code, Double myfund_num, Double myfund_price, String myfund_imurl) {
         this.myfund_name = myfund_name;
         this.myfund_type = myfund_type;
         this.myfund_code = myfund_code;
@@ -39,11 +39,11 @@ public class My_fund_bean {
         this.myfund_type = myfund_type;
     }
 
-    public int getMyfund_code() {
+    public String getMyfund_code() {
         return myfund_code;
     }
 
-    public void setMyfund_code(int myfund_code) {
+    public void setMyfund_code(String myfund_code) {
         this.myfund_code = myfund_code;
     }
 

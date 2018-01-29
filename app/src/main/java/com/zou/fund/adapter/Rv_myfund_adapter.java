@@ -20,7 +20,14 @@ import java.util.ArrayList;
 
 public class Rv_myfund_adapter extends RecyclerView.Adapter {
     ArrayList<My_fund_bean> arrayList = new ArrayList<>();
-
+    public interface  onItemClickListener{
+        void onItemClick(View view ,int position);
+        void  onItemLongClick(View view,int position);
+    }
+    private onItemClickListener onItemClickListener;
+    public void setOnItemClickListener(onItemClickListener onItemClickListener){
+        this.onItemClickListener=onItemClickListener;
+    }
     public Rv_myfund_adapter(ArrayList<My_fund_bean> arrayList) {
         this.arrayList = arrayList;
     }
@@ -33,13 +40,32 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        ViewGroup.LayoutParams layoutparams= holder.itemView.getLayoutParams();
         ((MyViewHolder)holder).getMyfund_name().setText(arrayList.get(position).getMyfund_name());
         ((MyViewHolder)holder).getMyfund_type().setText(arrayList.get(position).getMyfund_type());
         ((MyViewHolder)holder).getMyfund_code().setText("("+arrayList.get(position).getMyfund_code()+")");
-        ((MyViewHolder)holder).getMyfund_chicang().setText("("+arrayList.get(position).getMyfund_num()+"份");
+        ((MyViewHolder)holder).getMyfund_chicang().setText(+arrayList.get(position).getMyfund_num()+" 份");
          Uri uri = Uri.parse(arrayList.get(position).getMyfund_imurl());
         ((MyViewHolder)holder).getSd_gxjj().setImageURI(uri);
+        if(onItemClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int layoutPositon=holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.itemView,layoutPositon);
+
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int layoutPositon=holder.getLayoutPosition();
+                    onItemClickListener.onItemLongClick(holder.itemView,layoutPositon);
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
@@ -83,5 +109,9 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
         public SimpleDraweeView getSd_gxjj() {
             return sd_gxjj;
         }
+    }
+    public void removeItem(int position){
+        arrayList.remove(position);
+        notifyItemRemoved(position);
     }
 }

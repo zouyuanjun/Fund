@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class P_myfund {
     String myfund_name;             //持仓基金名称
     String myfund_type;          //类型
-    int myfund_code;          //基金代码
-    String myfund_imurl;        //估算净值图片url
+    String myfund_code;          //基金代码
+    String myfund_imurl;     //估算净值图片url
 
     String result;
     ArrayList<My_fund_bean> arrayList=new ArrayList<>();
@@ -43,13 +43,15 @@ public class P_myfund {
         //获取基金名称
         Elements els_myfundname=doc.getElementsByClass("SitePath");
         Elements elements=els_myfundname.select("a");
+        Log.d("基金名称",elements.toString());
         myfund_name=elements.get(2).text();
+
         Log.d("基金名称",myfund_name);
     }
 
     public void gettype(){
         Elements els=doc.getElementsByClass("infoOfFund");
-        Elements elements=els.select("td");
+       // Elements elements=els.select("td");
         Elements elements1=els.select("a");
         myfund_type=elements1.get(0).text();
         Log.d("基金类型",myfund_type);
@@ -59,7 +61,8 @@ public class P_myfund {
         Elements els=doc.getElementsByClass("fundDetail-tit");
         Elements elements=els.select("span");
         Element elements1=elements.get(1);
-        myfund_code=Integer.valueOf(elements1.text());
+
+        myfund_code=elements1.text();
         Log.d("基金代码",myfund_code+"");
     }
     public void getimageurl(){

@@ -57,14 +57,15 @@ public class Fr_myfund extends Fragment {
     ImageButton imb_add_myfund;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    int inputcode;
+    String inputcode;
     double inputnum=0;
     double inputprice=0;
     Activity activity;
     Network network;
     LitePalDB litePalDB;
     Rv_myfund_adapter adapter;
-    List<SQL_myfund> list; //查询结果
+    List<SQL_myfund> list; //查询结果\
+    PopupWindow window;
     int what;
     @Nullable
     @Override
@@ -96,16 +97,23 @@ public class Fr_myfund extends Fragment {
             Log.d("55555","返回结果"+s1);
             P_myfund my_fund=new P_myfund(s1);
             ArrayList<My_fund_bean> arrayList =my_fund.parse();
-            My_fund_bean my_fund_bean=arrayList.get(0);
-//            for (SQL_myfund myfund:list){
-//                while (myfund.getMyfund_code()==my_fund_bean.getMyfund_code()){
-//                my_fund_bean.setMyfund_num(myfund.getMyfund_num());
-//                my_fund_bean.setMyfund_price(myfund.getMyfund_price());
-//                }
-//            }
-            adapterarrayList.add(my_fund_bean);
-            Log.d("55555","基金名称"+my_fund_bean.getMyfund_name()+my_fund_bean.getMyfund_code()+my_fund_bean.getMyfund_num()+
-            my_fund_bean.getMyfund_price()+my_fund_bean.getMyfund_imurl()+my_fund_bean.getMyfund_type());
+            My_fund_bean my_fund_bean=arrayList.get(0);//获取解析出来的基金数据
+
+            for (SQL_myfund myfund:list){
+                Log.d("55555","数据库代码"+myfund.getMyfund_num()+"解析代码"+my_fund_bean.getMyfund_code());
+
+                while (myfund.getMyfund_code().equals(my_fund_bean.getMyfund_code())){
+                my_fund_bean.setMyfund_num(myfund.getMyfund_num());         //设置数据库中的基金持仓数据
+                my_fund_bean.setMyfund_price(myfund.getMyfund_price());
+
+                adapterarrayList.add(my_fund_bean);
+                Log.d("解析结果","基金名称"+my_fund_bean.getMyfund_name()+my_fund_bean.getMyfund_code()+my_fund_bean.getMyfund_num()+
+                        my_fund_bean.getMyfund_price()+my_fund_bean.getMyfund_imurl()+my_fund_bean.getMyfund_type());
+                break;
+                }
+            }
+
+
             adapter.notifyDataSetChanged();
             }
 
@@ -121,6 +129,17 @@ public class Fr_myfund extends Fragment {
        // arrayList.add(my_fund_bean);
         adapter=new Rv_myfund_adapter(adapterarrayList);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new Rv_myfund_adapter.onItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Toast.makeText(context, view., Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }
@@ -128,15 +147,14 @@ public class Fr_myfund extends Fragment {
     public void popwindows() {
         // 用于PopupWindow的View
         View contentView = LayoutInflater.from(context).inflate(R.layout.popwindows_myfund, null, false);
-        PopupWindow window = new PopupWindow(contentView, 1000, 600,true);
+         window = new PopupWindow(contentView, 1000, 600,true);
         // 设置PopupWindow的背景
         window.setBackgroundDrawable(new ColorDrawable(0xff2581ff));
         // 设置PopupWindow是否能响应外部点击事件
         window.setOutsideTouchable(true);
         // 设置PopupWindow是否能响应点击事件
         window.setTouchable(true);
-
-         window.showAtLocation(activity.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        window.showAtLocation(activity.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
          et_myfund_code=contentView.findViewById(R.id.et_myfund_code);
          et_myfund_num=contentView.findViewById(R.id.et_myfund_num);
          et_myfund_num.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
@@ -148,13 +166,15 @@ public class Fr_myfund extends Fragment {
          ib_myfund_save.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 inputcode=Integer.parseInt(et_myfund_code.getText().toString());
+                 inputcode=et_myfund_code.getText().toString();
                  inputnum=Double.parseDouble(et_myfund_num.getText().toString());
                  inputprice=Double.parseDouble(et_myfund_price.getText().toString());
                  SQL_myfund sql_myfund=new SQL_myfund(inputcode ,inputnum,inputprice);
                  initdata();
                  if (sql_myfund.save()){
                      Toast.makeText(context, "保存成功", Toast.LENGTH_LONG).show();
+                     initdata();        //刷新数据
+                     window.dismiss();
                  }
                  else Toast.makeText(context, "保存失败", Toast.LENGTH_LONG).show();
              }
@@ -163,7 +183,7 @@ public class Fr_myfund extends Fragment {
     }
     public void initdata(){
         Fresco.getImagePipeline().clearCaches();
-       // arrayList.clear();
+        adapterarrayList.clear();
         creatdatabase();
         querydata();
     }
@@ -178,7 +198,7 @@ public class Fr_myfund extends Fragment {
             String url = "http://fund.eastmoney.com/" + list.get(i).getMyfund_code() + ".html";
 
             network.Loadhtpp(handler, url, what);
-
+            //       network.Loadhtpp(handler," http://fund.eastmoney.com/000248.html", what);
         }
     }
 }
