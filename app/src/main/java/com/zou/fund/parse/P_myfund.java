@@ -27,6 +27,7 @@ public class P_myfund {
 
     public P_myfund(String result) {
         this.result = result;
+        Log.d("4444","字符长度"+result.length());
     }
 
     public ArrayList<My_fund_bean> parse(){
@@ -44,7 +45,11 @@ public class P_myfund {
         Elements els_myfundname=doc.getElementsByClass("SitePath");
         Elements elements=els_myfundname.select("a");
         Log.d("基金名称",elements.toString());
-        myfund_name=elements.get(2).text();
+        try {
+            myfund_name=elements.get(2).text();
+        }catch (IndexOutOfBoundsException ex){
+            myfund_name="代码错误";
+        }
 
         Log.d("基金名称",myfund_name);
     }

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zou.fund.bar.ChildFragment;
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fresco.initialize(this);
+        Fresco.initialize(this.getApplicationContext());
+        Log.d("5555","初始化图片完成");
         setContentView(R.layout.activity_main);
         viewPager1 = (ViewPager) findViewById(R.id.viewpager1);
         SQLiteDatabase db= Connector.getDatabase();

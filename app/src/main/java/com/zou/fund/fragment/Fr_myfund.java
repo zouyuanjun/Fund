@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -137,7 +138,9 @@ public class Fr_myfund extends Fragment {
 
             @Override
             public void onItemLongClick(View view, int position) {
-                Toast.makeText(context, view., Toast.LENGTH_LONG).show();
+                TextView textView=view.findViewById(R.id.tv_myfund_code);
+                adapter.removeItem(position);
+                Toast.makeText(context, textView.getText(), Toast.LENGTH_LONG).show();
             }
         });
 
