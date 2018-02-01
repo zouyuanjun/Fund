@@ -1,7 +1,9 @@
 package com.zou.fund.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,7 +48,7 @@ import java.util.List;
  */
 
 public class Fr_myfund extends Fragment {
-    ArrayList<My_fund_bean> adapterarrayList=new ArrayList<>();
+    ArrayList<My_fund_bean> adapterarrayList = new ArrayList<>();
     Context context;
     View rootView;
     RecyclerView recyclerView;
@@ -59,76 +61,79 @@ public class Fr_myfund extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     String inputcode;
-    double inputnum=0;
-    double inputprice=0;
+    double inputnum = 0;
+    double inputprice = 0;
     Activity activity;
     Network network;
     LitePalDB litePalDB;
     Rv_myfund_adapter adapter;
-    List<SQL_myfund> list; //查询结果\
+    List<SQL_myfund> querydatalist; //查询结果\
     PopupWindow window;
     int what;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView= inflater.inflate(R.layout.fr_myfund, container, false);
-        context= MainActivity.getContext();
-        context=this.getActivity();
-        activity=getActivity();
-        imb_add_myfund=rootView.findViewById(R.id.imb_add_myfund);
+        rootView = inflater.inflate(R.layout.fr_myfund, container, false);
+        context = MainActivity.getContext();
+        context = this.getActivity();
+        activity = getActivity();
+        imb_add_myfund = rootView.findViewById(R.id.imb_add_myfund);
         imb_add_myfund.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popwindows();
             }
         });
-        if (network==null){
-            network=new Network();
+        if (network == null) {
+            network = new Network();
         }
         initdata();
         initview();
         return rootView;
 
     }
-    private Handler handler=new Handler(){
+
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            String s1= (String) msg.obj;
-            Log.d("55555","返回结果"+s1);
-            P_myfund my_fund=new P_myfund(s1);
-            ArrayList<My_fund_bean> arrayList =my_fund.parse();
-            My_fund_bean my_fund_bean=arrayList.get(0);//获取解析出来的基金数据
+            String s1 = (String) msg.obj;
+            Log.d("55555", "返回结果" + s1);
+            P_myfund my_fund = new P_myfund(s1);
+            ArrayList<My_fund_bean> arrayList = my_fund.parse();
+            My_fund_bean my_fund_bean = arrayList.get(0);//获取解析出来的基金数据
 
-            for (SQL_myfund myfund:list){
-                Log.d("55555","数据库代码"+myfund.getMyfund_num()+"解析代码"+my_fund_bean.getMyfund_code());
+            for (SQL_myfund myfund : querydatalist) {
+                Log.d("55555", "数据库代码" + myfund.getMyfund_num() + "解析代码" + my_fund_bean.getMyfund_code());
 
-                while (myfund.getMyfund_code().equals(my_fund_bean.getMyfund_code())){
-                my_fund_bean.setMyfund_num(myfund.getMyfund_num());         //设置数据库中的基金持仓数据
-                my_fund_bean.setMyfund_price(myfund.getMyfund_price());
+                while (myfund.getMyfund_code().equals(my_fund_bean.getMyfund_code())) {
+                    my_fund_bean.setMyfund_num(myfund.getMyfund_num());         //设置数据库中的基金持仓数据
+                    my_fund_bean.setMyfund_price(myfund.getMyfund_price());
 
-                adapterarrayList.add(my_fund_bean);
-                Log.d("解析结果","基金名称"+my_fund_bean.getMyfund_name()+my_fund_bean.getMyfund_code()+my_fund_bean.getMyfund_num()+
-                        my_fund_bean.getMyfund_price()+my_fund_bean.getMyfund_imurl()+my_fund_bean.getMyfund_type());
-                break;
+                    adapterarrayList.add(my_fund_bean);
+                    Log.d("解析结果", "基金名称" + my_fund_bean.getMyfund_name() + my_fund_bean.getMyfund_code() + my_fund_bean.getMyfund_num() +
+                            my_fund_bean.getMyfund_price() + my_fund_bean.getMyfund_imurl() + my_fund_bean.getMyfund_type());
+                    break;
                 }
             }
 
 
             adapter.notifyDataSetChanged();
-            }
+        }
 
     };
-    public void initview(){
-        recyclerView=rootView.findViewById(R.id.rv_my_fund);
+
+    public void initview() {
+        recyclerView = rootView.findViewById(R.id.rv_my_fund);
         mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         // 设置布局管理器
         recyclerView.setLayoutManager(mLayoutManager);
         //设置分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL));
-       // my_fund_bean=new My_fund_bean("招商中证白酒指数","股票型","161725",111.5,imurl);
-       // arrayList.add(my_fund_bean);
-        adapter=new Rv_myfund_adapter(adapterarrayList);
+        // my_fund_bean=new My_fund_bean("招商中证白酒指数","股票型","161725",111.5,imurl);
+        // arrayList.add(my_fund_bean);
+        adapter = new Rv_myfund_adapter(adapterarrayList);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new Rv_myfund_adapter.onItemClickListener() {
             @Override
@@ -137,10 +142,27 @@ public class Fr_myfund extends Fragment {
             }
 
             @Override
-            public void onItemLongClick(View view, int position) {
-                TextView textView=view.findViewById(R.id.tv_myfund_code);
-                adapter.removeItem(position);
-                Toast.makeText(context, textView.getText(), Toast.LENGTH_LONG).show();
+            public void onItemLongClick(View view, final int position) {      //长按删除
+                final TextView textView = view.findViewById(R.id.tv_myfund_code);
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setMessage("是否删除？").setNeutralButton("是",new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String myfund_code=textView.getText().toString();
+                        Log.d("555555",myfund_code);
+                        DataSupport.deleteAll(com.zou.fund.sqlbean.SQL_myfund.class,"myfund_code=?",myfund_code);
+                        //adapter.removeItem(position);
+                        initdata();
+                        Toast.makeText(context, textView.getText(), Toast.LENGTH_LONG).show();
+                    }
+                }).setPositiveButton("否", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create().show();
+
             }
         });
 
@@ -150,7 +172,7 @@ public class Fr_myfund extends Fragment {
     public void popwindows() {
         // 用于PopupWindow的View
         View contentView = LayoutInflater.from(context).inflate(R.layout.popwindows_myfund, null, false);
-         window = new PopupWindow(contentView, 1000, 600,true);
+        window = new PopupWindow(contentView, 1000, 600, true);
         // 设置PopupWindow的背景
         window.setBackgroundDrawable(new ColorDrawable(0xff2581ff));
         // 设置PopupWindow是否能响应外部点击事件
@@ -158,50 +180,65 @@ public class Fr_myfund extends Fragment {
         // 设置PopupWindow是否能响应点击事件
         window.setTouchable(true);
         window.showAtLocation(activity.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
-         et_myfund_code=contentView.findViewById(R.id.et_myfund_code);
-         et_myfund_num=contentView.findViewById(R.id.et_myfund_num);
-         et_myfund_num.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-         et_myfund_price=contentView.findViewById(R.id.et_myfund_price);
-         et_myfund_price.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-         ib_myfund_save=contentView.findViewById(R.id.ib_myfund_save);
+        et_myfund_code = contentView.findViewById(R.id.et_myfund_code);
+        et_myfund_num = contentView.findViewById(R.id.et_myfund_num);
+        et_myfund_num.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        et_myfund_price = contentView.findViewById(R.id.et_myfund_price);
+        et_myfund_price.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        ib_myfund_save = contentView.findViewById(R.id.ib_myfund_save);
 
 
-         ib_myfund_save.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 inputcode=et_myfund_code.getText().toString();
-                 inputnum=Double.parseDouble(et_myfund_num.getText().toString());
-                 inputprice=Double.parseDouble(et_myfund_price.getText().toString());
-                 SQL_myfund sql_myfund=new SQL_myfund(inputcode ,inputnum,inputprice);
-                 initdata();
-                 if (sql_myfund.save()){
-                     Toast.makeText(context, "保存成功", Toast.LENGTH_LONG).show();
-                     initdata();        //刷新数据
-                     window.dismiss();
-                 }
-                 else Toast.makeText(context, "保存失败", Toast.LENGTH_LONG).show();
-             }
-         });
+        ib_myfund_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    inputcode = et_myfund_code.getText().toString();
+                    inputnum = Double.parseDouble(et_myfund_num.getText().toString());
+                    inputprice = Double.parseDouble(et_myfund_price.getText().toString());
+                } catch (NumberFormatException ex) {
+                }
+                querydatalist.clear();
+                querydata();
+                for (int i = 0; i < querydatalist.size(); i++) {
+                    if (querydatalist.get(i).getMyfund_code().equals(inputcode)) {               //判断新输入的基金是否已存在
+                        Toast.makeText(context, "保存失败,该基金已存在", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    SQL_myfund sql_myfund = new SQL_myfund(inputcode, inputnum, inputprice);
+                    if (sql_myfund.save()) {
+                        Toast.makeText(context, "保存成功", Toast.LENGTH_LONG).show();
+                        initdata();        //刷新数据
+                        window.dismiss();
+                    } else Toast.makeText(context, "保存失败", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
 
     }
-    public void initdata(){
+
+    public void initdata() {
         Fresco.getImagePipeline().clearCaches();
         adapterarrayList.clear();
         creatdatabase();
         querydata();
+        if (querydatalist != null) {
+            for (int i = 0; i < querydatalist.size(); i++) {
+                String url = "http://fund.eastmoney.com/" + querydatalist.get(i).getMyfund_code() + ".html";
+
+                network.Loadhtpp(handler, url, what);
+                //       network.Loadhtpp(handler," http://fund.eastmoney.com/000248.html", what);
+            }
+        }
     }
-    public void creatdatabase(){
-        litePalDB=new LitePalDB("myfund",1);              //创建数据库
+
+    public void creatdatabase() {
+        litePalDB = new LitePalDB("myfund", 1);              //创建数据库
         litePalDB.addClassName(com.zou.fund.sqlbean.SQL_myfund.class.getName());
         LitePal.use(litePalDB);
     }
-    public void querydata() {
-        list = DataSupport.findAll(SQL_myfund.class);
-        for (int i = 0; i < list.size(); i++) {
-            String url = "http://fund.eastmoney.com/" + list.get(i).getMyfund_code() + ".html";
 
-            network.Loadhtpp(handler, url, what);
-            //       network.Loadhtpp(handler," http://fund.eastmoney.com/000248.html", what);
-        }
+    public void querydata() {
+        querydatalist = DataSupport.findAll(SQL_myfund.class);
     }
 }

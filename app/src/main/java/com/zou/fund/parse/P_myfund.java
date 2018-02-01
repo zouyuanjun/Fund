@@ -31,13 +31,18 @@ public class P_myfund {
     }
 
     public ArrayList<My_fund_bean> parse(){
-        doc= Jsoup.parse(result);
-        getname();
-        gettype();
-        getcode();
-        getimageurl();
-        My_fund_bean my_fund_bean=new My_fund_bean(myfund_name,myfund_type,myfund_code,0.0,0.0,myfund_imurl);
-        arrayList.add(my_fund_bean);
+        My_fund_bean my_fund_bean;
+       if (result.length()>3000) {
+           doc = Jsoup.parse(result);
+           getname();
+           gettype();
+           getcode();
+           getimageurl();
+           my_fund_bean = new My_fund_bean(myfund_name, myfund_type, myfund_code, 0.0, 0.0, myfund_imurl);
+       }else {
+           my_fund_bean=new My_fund_bean("代码错误","错误","000000",0.0,0.0,"");
+       }
+       arrayList.add(my_fund_bean);
         return arrayList;
     }
     public void getname(){

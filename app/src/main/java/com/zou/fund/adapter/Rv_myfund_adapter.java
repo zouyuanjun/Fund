@@ -44,7 +44,7 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
         ViewGroup.LayoutParams layoutparams= holder.itemView.getLayoutParams();
         ((MyViewHolder)holder).getMyfund_name().setText(arrayList.get(position).getMyfund_name());
         ((MyViewHolder)holder).getMyfund_type().setText(arrayList.get(position).getMyfund_type());
-        ((MyViewHolder)holder).getMyfund_code().setText("("+arrayList.get(position).getMyfund_code()+")");
+        ((MyViewHolder)holder).getMyfund_code().setText(arrayList.get(position).getMyfund_code());
         ((MyViewHolder)holder).getMyfund_chicang().setText(+arrayList.get(position).getMyfund_num()+" 份");
          Uri uri = Uri.parse(arrayList.get(position).getMyfund_imurl());
         ((MyViewHolder)holder).getSd_gxjj().setImageURI(uri);
