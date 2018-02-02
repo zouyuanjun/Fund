@@ -15,8 +15,8 @@
                 android:id="@+id/et_myfund_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:hint="输入基金代码"
+                android:inputType="number"
                 android:layout_gravity="center_horizontal"/>
             <EditText
                 android:id="@+id/et_myfund_num"

@@ -32,7 +32,7 @@ public class P_myfund {
 
     public ArrayList<My_fund_bean> parse(){
         My_fund_bean my_fund_bean;
-       if (result.length()>3000) {
+       if (result.length()>5000) {
            doc = Jsoup.parse(result);
            getname();
            gettype();
@@ -49,7 +49,6 @@ public class P_myfund {
         //获取基金名称
         Elements els_myfundname=doc.getElementsByClass("SitePath");
         Elements elements=els_myfundname.select("a");
-        Log.d("基金名称",elements.toString());
         try {
             myfund_name=elements.get(2).text();
         }catch (IndexOutOfBoundsException ex){

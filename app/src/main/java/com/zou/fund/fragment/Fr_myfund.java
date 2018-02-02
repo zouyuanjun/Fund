@@ -99,7 +99,6 @@ public class Fr_myfund extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             String s1 = (String) msg.obj;
-            Log.d("55555", "返回结果" + s1);
             P_myfund my_fund = new P_myfund(s1);
             ArrayList<My_fund_bean> arrayList = my_fund.parse();
             My_fund_bean my_fund_bean = arrayList.get(0);//获取解析出来的基金数据
@@ -193,24 +192,32 @@ public class Fr_myfund extends Fragment {
             public void onClick(View v) {
                 try {
                     inputcode = et_myfund_code.getText().toString();
+                    int i=0;
+                    for (i=inputcode.length();inputcode.length()<6;i++){
+                        inputcode="0"+inputcode;
+                        Log.d("5555","i"+inputcode.length());
+                    }
                     inputnum = Double.parseDouble(et_myfund_num.getText().toString());
                     inputprice = Double.parseDouble(et_myfund_price.getText().toString());
                 } catch (NumberFormatException ex) {
                 }
                 querydatalist.clear();
                 querydata();
+                int flg = 1;  //基金是否存在状态量
                 for (int i = 0; i < querydatalist.size(); i++) {
-                    if (querydatalist.get(i).getMyfund_code().equals(inputcode)) {               //判断新输入的基金是否已存在
+                    if (querydatalist.get(i).getMyfund_code().equals(inputcode)) {//判断新输入的基金是否已存在
+                        flg = 0;  //该基金已存在改为0
                         Toast.makeText(context, "保存失败,该基金已存在", Toast.LENGTH_LONG).show();
                         break;
                     }
+                }
+                if (flg == 1) {
                     SQL_myfund sql_myfund = new SQL_myfund(inputcode, inputnum, inputprice);
                     if (sql_myfund.save()) {
                         Toast.makeText(context, "保存成功", Toast.LENGTH_LONG).show();
                         initdata();        //刷新数据
                         window.dismiss();
                     } else Toast.makeText(context, "保存失败", Toast.LENGTH_LONG).show();
-
                 }
             }
         });
