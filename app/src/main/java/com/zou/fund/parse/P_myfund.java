@@ -20,7 +20,7 @@ public class P_myfund {
     String myfund_type;          //类型
     String myfund_code;          //基金代码
     String myfund_imurl;     //估算净值图片url
-
+    String myfund_price;
     String result;
     ArrayList<My_fund_bean> arrayList=new ArrayList<>();
     Document doc;
@@ -38,9 +38,10 @@ public class P_myfund {
            gettype();
            getcode();
            getimageurl();
-           my_fund_bean = new My_fund_bean(myfund_name, myfund_type, myfund_code, 0.0, 0.0, myfund_imurl);
+           getprice();
+           my_fund_bean = new My_fund_bean(myfund_name, myfund_type, myfund_code, 0.0, 0.0, myfund_imurl,"0",myfund_price);
        }else {
-           my_fund_bean=new My_fund_bean("代码错误","错误","000000",0.0,0.0,"");
+           my_fund_bean=new My_fund_bean("代码错误","错误","000000",0.0,0.0,"","","错误");
        }
        arrayList.add(my_fund_bean);
         return arrayList;
@@ -77,5 +78,11 @@ public class P_myfund {
     public void getimageurl(){
         myfund_imurl="http://j4.dfcfw.com/charts/pic6/"+myfund_code+".png";
     }
+    public void getprice(){
+        Elements elements=doc.getElementsByClass("dataNums");
+        Element element=elements.get(1);
 
+        Elements s=element.select("span");
+        myfund_price=s.get(0).text();
+    }
 }

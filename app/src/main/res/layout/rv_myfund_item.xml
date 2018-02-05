@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/tv_myfund_name"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -43,7 +43,7 @@
             android:layout_alignBottom="@+id/tv_myfund_type"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="17dp"
-            android:text="1101568w" />
+            android:text="1101568" />
 
         <TextView
             android:id="@+id/tv_myfund_chicang"
@@ -65,22 +65,22 @@
            />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_myfund_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tv_myfund_chicang"
             android:layout_below="@+id/tv_myfund_chicang"
             android:layout_marginTop="28dp"
-            android:text="TextView" />
+            android:text="基金净值" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_myfund_yield"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView"
-            android:layout_below="@+id/textView"
+            android:layout_alignStart="@+id/tv_myfund_price"
+            android:layout_below="@+id/tv_myfund_price"
             android:layout_marginTop="15dp"
-            android:text="TextView" />
+            android:text="收益" />
 
 
     </RelativeLayout>

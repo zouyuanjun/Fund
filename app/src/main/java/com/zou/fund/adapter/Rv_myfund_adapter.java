@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -45,7 +44,9 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
         ((MyViewHolder)holder).getMyfund_name().setText(arrayList.get(position).getMyfund_name());
         ((MyViewHolder)holder).getMyfund_type().setText(arrayList.get(position).getMyfund_type());
         ((MyViewHolder)holder).getMyfund_code().setText(arrayList.get(position).getMyfund_code());
-        ((MyViewHolder)holder).getMyfund_chicang().setText(+arrayList.get(position).getMyfund_num()+" 份");
+        ((MyViewHolder)holder).getMyfund_chicang().setText(arrayList.get(position).getMyfund_worth()+" 份");
+        ((MyViewHolder)holder).getMyfund_price().setText(arrayList.get(position).getMyfund_price());
+        ((MyViewHolder)holder).getMyfund_yield().setText(arrayList.get(position).getMyfund_yield());
          Uri uri = Uri.parse(arrayList.get(position).getMyfund_imurl());
         ((MyViewHolder)holder).getSd_gxjj().setImageURI(uri);
         if(onItemClickListener!=null){
@@ -78,7 +79,9 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
         TextView myfund_name;             //持仓基金名称
         TextView myfund_type;          //类型
         TextView myfund_code;          //基金代码
-        TextView myfund_chicang;       //持仓数量
+        TextView myfund_chicang;//持仓数量
+        TextView myfund_price;
+        TextView myfund_yield;
         SimpleDraweeView sd_gxjj;
 
         public MyViewHolder(View itemView) {
@@ -87,6 +90,8 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
             myfund_type = itemView.findViewById(R.id.tv_myfund_type);
             myfund_code = itemView.findViewById(R.id.tv_myfund_code);
             myfund_chicang = itemView.findViewById(R.id.tv_myfund_chicang);
+            myfund_price=itemView.findViewById(R.id.tv_myfund_price);
+            myfund_yield=itemView.findViewById(R.id.tv_myfund_yield);
             sd_gxjj = itemView.findViewById(R.id.sd_gxjj);
         }
 
@@ -108,6 +113,14 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
 
         public SimpleDraweeView getSd_gxjj() {
             return sd_gxjj;
+        }
+
+        public TextView getMyfund_price() {
+            return myfund_price;
+        }
+
+        public TextView getMyfund_yield() {
+            return myfund_yield;
         }
     }
     public void removeItem(int position){

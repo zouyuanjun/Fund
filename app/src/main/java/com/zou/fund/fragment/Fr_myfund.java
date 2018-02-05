@@ -103,16 +103,18 @@ public class Fr_myfund extends Fragment {
             ArrayList<My_fund_bean> arrayList = my_fund.parse();
             My_fund_bean my_fund_bean = arrayList.get(0);//获取解析出来的基金数据
 
-            for (SQL_myfund myfund : querydatalist) {
-                Log.d("55555", "数据库代码" + myfund.getMyfund_num() + "解析代码" + my_fund_bean.getMyfund_code());
+            for (SQL_myfund sql_myfund : querydatalist) {
+                Log.d("55555", "数据库代码" + sql_myfund.getMyfund_num() + "解析代码" + my_fund_bean.getMyfund_code());
 
-                while (myfund.getMyfund_code().equals(my_fund_bean.getMyfund_code())) {
-                    my_fund_bean.setMyfund_num(myfund.getMyfund_num());         //设置数据库中的基金持仓数据
-                    my_fund_bean.setMyfund_price(myfund.getMyfund_price());
+                while (sql_myfund.getMyfund_code().equals(my_fund_bean.getMyfund_code())) {
+                    Double fund_num=sql_myfund.getMyfund_num();
+                    Double price=Double.parseDouble(my_fund_bean.getMyfund_price());
+                    my_fund_bean.setMyfund_worth(sql_myfund.getMyfund_num());         //设置数据库中的基金持仓数据
+                    my_fund_bean.setMyfund_cost(sql_myfund.getMyfund_cost());
 
                     adapterarrayList.add(my_fund_bean);
-                    Log.d("解析结果", "基金名称" + my_fund_bean.getMyfund_name() + my_fund_bean.getMyfund_code() + my_fund_bean.getMyfund_num() +
-                            my_fund_bean.getMyfund_price() + my_fund_bean.getMyfund_imurl() + my_fund_bean.getMyfund_type());
+                    Log.d("解析结果", "基金名称" + my_fund_bean.getMyfund_name() + my_fund_bean.getMyfund_code() + my_fund_bean.getMyfund_worth() +
+                            my_fund_bean.getMyfund_cost() + my_fund_bean.getMyfund_imurl() + my_fund_bean.getMyfund_type());
                     break;
                 }
             }

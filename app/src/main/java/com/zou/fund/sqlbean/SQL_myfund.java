@@ -9,12 +9,12 @@ import org.litepal.crud.DataSupport;
 public class SQL_myfund extends DataSupport {
     String myfund_code;
     double myfund_num;
-    double myfund_price;
+    double myfund_cost;
 
-    public SQL_myfund(String myfund_code, double myfund_num, double myfund_price) {
+    public SQL_myfund(String myfund_code, double myfund_num, double myfund_cost) {
         this.myfund_code = myfund_code;
         this.myfund_num = myfund_num;
-        this.myfund_price = myfund_price;
+        this.myfund_cost = myfund_cost;
     }
 
     public String getMyfund_code() {
@@ -33,11 +33,11 @@ public class SQL_myfund extends DataSupport {
         this.myfund_num = myfund_num;
     }
 
-    public double getMyfund_price() {
-        return myfund_price;
+    public double getMyfund_cost() {
+        return myfund_cost;
     }
 
-    public void setMyfund_price(double myfund_price) {
-        this.myfund_price = myfund_price;
+    public void setMyfund_cost(double myfund_cost) {
+        this.myfund_cost = myfund_cost;
     }
 }
