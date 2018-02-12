@@ -11,6 +11,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.zou.fund.R;
 import com.zou.fund.data.My_fund_bean;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -40,11 +41,12 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        DecimalFormat df = new DecimalFormat( "0.00 ");//控制小数点位数
         ViewGroup.LayoutParams layoutparams= holder.itemView.getLayoutParams();
         ((MyViewHolder)holder).getMyfund_name().setText(arrayList.get(position).getMyfund_name());
         ((MyViewHolder)holder).getMyfund_type().setText(arrayList.get(position).getMyfund_type());
         ((MyViewHolder)holder).getMyfund_code().setText(arrayList.get(position).getMyfund_code());
-        ((MyViewHolder)holder).getMyfund_chicang().setText(arrayList.get(position).getMyfund_worth()+" 份");
+        ((MyViewHolder)holder).getMyfund_chicang().setText(df.format(arrayList.get(position).getMyfund_worth())+" 元");
         ((MyViewHolder)holder).getMyfund_price().setText(arrayList.get(position).getMyfund_price());
         ((MyViewHolder)holder).getMyfund_yield().setText(arrayList.get(position).getMyfund_yield());
          Uri uri = Uri.parse(arrayList.get(position).getMyfund_imurl());

@@ -14,12 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zou.fund.MainActivity;
 import com.zou.fund.R;
 import com.zou.fund.adapter.Rv_contrast_adapter;
 
 import com.zou.fund.data.Fund_position_arraylist;
 import com.zou.fund.parse.Chicang;
-import com.zou.fund.sqlbean.Fund_cc_bean;
+import com.zou.fund.sqlbean.SQL_fund_cc_bean;
 import com.zou.fund.util.Network;
 
 import java.io.UnsupportedEncodingException;
@@ -39,7 +40,7 @@ public class Fr_contrast extends Fragment {
     View rootView;
     Network network;
     int what;
-    ArrayList<Fund_cc_bean> arrayList=new ArrayList();
+    ArrayList<SQL_fund_cc_bean> arrayList=new ArrayList();
 
     private Handler handler=new Handler(){
         @Override
@@ -58,14 +59,14 @@ public class Fr_contrast extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         rootView= inflater.inflate(R.layout.fr_contrast, container, false);
-        context=this.getActivity();
+        rootView= inflater.inflate(R.layout.fr_contrast, container, false);
+        context= this.getActivity();
         initData();
         initView();
         if (network==null){
             network=new Network();
         }
-        network.Loadhtpp(handler,url,what);
+       // network.Loadhtpp(handler,url,what);
         return rootView;
     }
 
@@ -77,9 +78,9 @@ public class Fr_contrast extends Fragment {
     }
 
     private void initView() {
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_contrast);
+        recyclerView = rootView.findViewById(R.id.rv_contrast);
         // 设置布局管理器
-       recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setLayoutManager(mLayoutManager);
        //设置分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL));
         // 设置adapter

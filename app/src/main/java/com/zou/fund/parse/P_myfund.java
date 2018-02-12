@@ -20,7 +20,7 @@ public class P_myfund {
     String myfund_type;          //类型
     String myfund_code;          //基金代码
     String myfund_imurl;     //估算净值图片url
-    String myfund_price;
+    String myfund_price;    //基金净值
     String result;
     ArrayList<My_fund_bean> arrayList=new ArrayList<>();
     Document doc;

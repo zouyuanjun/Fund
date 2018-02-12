@@ -9,10 +9,10 @@ public class My_fund_bean {
     String myfund_type;          //类型
     String myfund_code;          //基金代码
     Double myfund_worth;       //持仓总量
-    Double myfund_cost;       //持仓成本
+    Double myfund_cost;       //持仓单价
     String myfund_imurl;        //估算净值图片url
     String myfund_yield;        //收益率
-    String myfund_price;
+    String myfund_price;        //基金净值
 
     public My_fund_bean(String myfund_name, String myfund_type, String myfund_code, Double myfund_worth, Double myfund_cost, String myfund_imurl, String myfund_yield, String myfund_price) {
         this.myfund_name = myfund_name;

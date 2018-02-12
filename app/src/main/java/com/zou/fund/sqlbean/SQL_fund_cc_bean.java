@@ -7,7 +7,7 @@ import org.litepal.crud.DataSupport;
  * 基金持仓类
  */
 
-public class Fund_cc_bean extends DataSupport {
+public class SQL_fund_cc_bean extends DataSupport {
     private String name;
     private String zf;
     private String ratio;
@@ -15,7 +15,7 @@ public class Fund_cc_bean extends DataSupport {
     private String cgjj;
     private String cgjj_last;
 
-    public Fund_cc_bean(String name, String zf, String ratio, String ratio_last, String cgjj, String cgjj_last) {
+    public SQL_fund_cc_bean(String name, String zf, String ratio, String ratio_last, String cgjj, String cgjj_last) {
         this.name = name;
         this.zf = zf;
         this.ratio = ratio;

@@ -2,6 +2,7 @@ package com.zou.fund.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
@@ -40,6 +41,7 @@ import org.litepal.LitePal;
 import org.litepal.LitePalDB;
 import org.litepal.crud.DataSupport;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class Fr_myfund extends Fragment {
 
     String inputcode;
     double inputnum = 0;
-    double inputprice = 0;
+    double inputcost = 0;
     Activity activity;
     Network network;
     LitePalDB litePalDB;
@@ -107,10 +109,18 @@ public class Fr_myfund extends Fragment {
                 Log.d("55555", "数据库代码" + sql_myfund.getMyfund_num() + "解析代码" + my_fund_bean.getMyfund_code());
 
                 while (sql_myfund.getMyfund_code().equals(my_fund_bean.getMyfund_code())) {
-                    Double fund_num=sql_myfund.getMyfund_num();
-                    Double price=Double.parseDouble(my_fund_bean.getMyfund_price());
-                    my_fund_bean.setMyfund_worth(sql_myfund.getMyfund_num());         //设置数据库中的基金持仓数据
+                    DecimalFormat df = new DecimalFormat("0.00 ");//控制小数点位数
+                    Double fund_num = sql_myfund.getMyfund_num();
+                    Double price = Double.parseDouble(my_fund_bean.getMyfund_price());
+                    Double myfund_worth = price * fund_num;     //计算持仓总量；基金净值乘分数
+                    Double cost = fund_num * sql_myfund.getMyfund_cost();       //计算持仓成本
+                    Double yield = (myfund_worth - cost) / myfund_worth * 100;
+                    Double shouyi = myfund_worth - cost;
+                    String yieldstring = df.format(shouyi) + "元 " + df.format(yield) + "%";
+                    my_fund_bean.setMyfund_cost(cost);
+                    my_fund_bean.setMyfund_worth(myfund_worth);
                     my_fund_bean.setMyfund_cost(sql_myfund.getMyfund_cost());
+                    my_fund_bean.setMyfund_yield(yieldstring);
 
                     adapterarrayList.add(my_fund_bean);
                     Log.d("解析结果", "基金名称" + my_fund_bean.getMyfund_name() + my_fund_bean.getMyfund_code() + my_fund_bean.getMyfund_worth() +
@@ -131,9 +141,7 @@ public class Fr_myfund extends Fragment {
         // 设置布局管理器
         recyclerView.setLayoutManager(mLayoutManager);
         //设置分割线
-        recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL));
-        // my_fund_bean=new My_fund_bean("招商中证白酒指数","股票型","161725",111.5,imurl);
-        // arrayList.add(my_fund_bean);
+        recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         adapter = new Rv_myfund_adapter(adapterarrayList);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new Rv_myfund_adapter.onItemClickListener() {
@@ -200,7 +208,7 @@ public class Fr_myfund extends Fragment {
                         Log.d("5555","i"+inputcode.length());
                     }
                     inputnum = Double.parseDouble(et_myfund_num.getText().toString());
-                    inputprice = Double.parseDouble(et_myfund_price.getText().toString());
+                    inputcost = Double.parseDouble(et_myfund_price.getText().toString());
                 } catch (NumberFormatException ex) {
                 }
                 querydatalist.clear();
@@ -209,12 +217,21 @@ public class Fr_myfund extends Fragment {
                 for (int i = 0; i < querydatalist.size(); i++) {
                     if (querydatalist.get(i).getMyfund_code().equals(inputcode)) {//判断新输入的基金是否已存在
                         flg = 0;  //该基金已存在改为0
-                        Toast.makeText(context, "保存失败,该基金已存在", Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
+                if (flg==0){
+                    ContentValues values = new ContentValues();
+                    values.put("myfund_num", inputnum);
+                    values.put("myfund_cost", inputcost);
+                    DataSupport.updateAll(SQL_myfund.class, values, "myfund_code = ? ", inputcode);
+                    Toast.makeText(context, "修改成功", Toast.LENGTH_LONG).show();
+                    initdata();        //刷新数据
+                    window.dismiss();
+
+                }
                 if (flg == 1) {
-                    SQL_myfund sql_myfund = new SQL_myfund(inputcode, inputnum, inputprice);
+                    SQL_myfund sql_myfund = new SQL_myfund(inputcode, inputnum, inputcost);
                     if (sql_myfund.save()) {
                         Toast.makeText(context, "保存成功", Toast.LENGTH_LONG).show();
                         initdata();        //刷新数据
@@ -224,7 +241,7 @@ public class Fr_myfund extends Fragment {
             }
         });
 
-    }
+    }           //弹出的输入框
 
     public void initdata() {
         Fresco.getImagePipeline().clearCaches();
@@ -249,5 +266,6 @@ public class Fr_myfund extends Fragment {
 
     public void querydata() {
         querydatalist = DataSupport.findAll(SQL_myfund.class);
+        Log.d("5555","数据库大小"+querydatalist.size());
     }
 }

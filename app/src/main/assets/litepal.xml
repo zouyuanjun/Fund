@@ -5,6 +5,6 @@
     <version value="1" ></version>
 
     <list>
-        <mapping class="com.zou.fund.sqlbean.Fund_cc_bean"></mapping>
+        <mapping class="com.zou.fund.sqlbean.SQL_fund_cc_bean"></mapping>
     </list>
 </litepal>

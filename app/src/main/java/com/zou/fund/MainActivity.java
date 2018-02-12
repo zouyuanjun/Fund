@@ -15,6 +15,7 @@ import com.zou.fund.bar.NavitationScrollLayout;
 import com.zou.fund.bar.ViewPagerAdapter;
 import com.zou.fund.fragment.Fr_contrast;
 import com.zou.fund.fragment.Fr_myfund;
+import com.zou.fund.fragment.Fr_rangking_list;
 import com.zou.fund.fragment.Fr_test;
 
 import org.litepal.tablemanager.Connector;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragments1 =  new ArrayList<>();
         fragments1.add(new Fr_myfund());
-        fragments1.add(new ChildFragment());
+        fragments1.add(new Fr_rangking_list());
         fragments1.add(new Fr_contrast());
         fragments1.add(new Fr_test());
         viewPagerAdapter1 = new ViewPagerAdapter(getSupportFragmentManager(), fragments1);
