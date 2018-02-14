@@ -203,7 +203,7 @@ public class Fr_myfund extends Fragment {
                 try {
                     inputcode = et_myfund_code.getText().toString();
                     int i=0;
-                    for (i=inputcode.length();inputcode.length()<6;i++){
+                    for (i=inputcode.length();inputcode.length()<6;i++){//补充代码前面的0
                         inputcode="0"+inputcode;
                         Log.d("5555","i"+inputcode.length());
                     }

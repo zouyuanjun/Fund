@@ -31,7 +31,7 @@ public class Fr_rangking_list extends Fragment {
     Context context;
     View rootView;
     private RecyclerView.LayoutManager mLayoutManager;
-    ArrayList arrayList=new ArrayList();
+    ArrayList<String> arrayList=new ArrayList();
     RecyclerView recyclerView;
     String url="http://fund.eastmoney.com/data/rankhandler.aspx?op=ph&dt=kf&ft=all&rs=&gs=0&sc=qjzf&st=desc&pi=1&pn=10000&dx=1";
     Network network;
@@ -52,16 +52,18 @@ public class Fr_rangking_list extends Fragment {
             super.handleMessage(msg);
             String result = (String) msg.obj;
             P_ranking_list p_ranking_list = new P_ranking_list();
+            arrayList.clear();
+            Log.d("5555", "清理后数组大小" + arrayList.size());
             try {
-                arrayList.clear();
-                arrayList = p_ranking_list.p_rangking_list(result);
+                ArrayList<String> arrayList1=new ArrayList<String>();
+                arrayList1=p_ranking_list.p_rangking_list(result);
+                for (String s:arrayList1){
+                arrayList.add(s);}
 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-
             adapter.notifyDataSetChanged();
-            Log.d("5555", "排行数据大小" + arrayList.size());
         }
     };
     public void initdata(){
@@ -71,7 +73,6 @@ public class Fr_rangking_list extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         //设置分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
-       arrayList.add("sdfsdf");
         adapter=new Rv_rangking_list_adapter(arrayList);
         recyclerView.setAdapter(adapter);
         network=new Network();

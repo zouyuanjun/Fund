@@ -19,7 +19,7 @@ public class P_ranking_list {
 
     public P_ranking_list() {
     }
-    ArrayList arrayList=new ArrayList();
+    ArrayList<String> arrayList=new ArrayList();
     public ArrayList p_rangking_list(String HTML) throws UnsupportedEncodingException {
         LitePalDB litePal=new LitePalDB("fund_id",1);
         litePal.addClassName(com.zou.fund.sqlbean.Fund_id_bean.class.getName());
@@ -30,8 +30,12 @@ public class P_ranking_list {
 
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(str);
+        int i=0;
         while(m.find()) {
-            arrayList.add(m.group());
+           if (i<10) {
+               arrayList.add(m.group());
+               i++;
+           }
             //System.out.println(m.group());
         }
 return arrayList;
