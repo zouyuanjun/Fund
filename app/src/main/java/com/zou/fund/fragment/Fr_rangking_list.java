@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.zou.fund.R;
 import com.zou.fund.adapter.Rv_rangking_list_adapter;
+import com.zou.fund.data.Fund_rankingdata_bean;
 import com.zou.fund.parse.P_ranking_list;
 import com.zou.fund.util.Network;
 
@@ -31,7 +32,7 @@ public class Fr_rangking_list extends Fragment {
     Context context;
     View rootView;
     private RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<String> arrayList=new ArrayList();
+    ArrayList<Fund_rankingdata_bean> arrayList=new ArrayList();
     RecyclerView recyclerView;
     String url="http://fund.eastmoney.com/data/rankhandler.aspx?op=ph&dt=kf&ft=all&rs=&gs=0&sc=qjzf&st=desc&pi=1&pn=10000&dx=1";
     Network network;
@@ -53,12 +54,11 @@ public class Fr_rangking_list extends Fragment {
             String result = (String) msg.obj;
             P_ranking_list p_ranking_list = new P_ranking_list();
             arrayList.clear();
-            Log.d("5555", "清理后数组大小" + arrayList.size());
             try {
-                ArrayList<String> arrayList1=new ArrayList<String>();
+                ArrayList<Fund_rankingdata_bean> arrayList1=new ArrayList<Fund_rankingdata_bean>();
                 arrayList1=p_ranking_list.p_rangking_list(result);
-                for (String s:arrayList1){
-                arrayList.add(s);}
+                for (Fund_rankingdata_bean Fs:arrayList1){
+                arrayList.add(Fs);}
 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();

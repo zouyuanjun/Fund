@@ -3,67 +3,87 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:padding="10dp"
+                android:padding="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tv_rangking_fundcode"
+                android:background="@color/color_ffffff"
+                android:text="110011"/>
+            <TextView
+                android:padding="2dp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_rangking_fundname"
+                android:singleLine="true"
+                android:text="华夏大盘精选"/>
+            <TextView
+                android:padding="2dp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/tv_day"
+                android:background="@color/color_ffffff"
                 android:text="3.42%"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:padding="2dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_week"
                 android:text="3.42%"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_month"
+                android:background="@color/color_ffffff"
                 android:text="3.42%"/>
+
             <TextView
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_two_month"
-                android:text="3.42%"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:padding="2dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_three_month"
                 android:text="3.42%"/>
             <TextView
                 android:padding="10dp"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_six_month"
+                android:background="@color/color_ffffff"
                 android:text="3.42%"/>
             <TextView
-                android:padding="10dp"
-                android:layout_width="wrap_content"
+                android:padding="2dp"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_this_year"
+                android:text="3.42%"/>
+            <TextView
+                android:padding="2dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_year"
+                android:background="@color/color_ffffff"
                 android:text="3.42%"/>
             <TextView
-                android:padding="10dp"
-                android:layout_width="wrap_content"
+                android:padding="2dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_two_year"
                 android:text="3.42%"/>
             <TextView
-                android:padding="10dp"
-                android:layout_width="wrap_content"
+                android:background="@color/color_ffffff"
+                android:padding="2dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_max"
                 android:text="3.42%"/>
         </LinearLayout>
 
 
-    </HorizontalScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

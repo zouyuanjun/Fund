@@ -34,7 +34,7 @@ public class Rv_rangking_list_item_adapter extends RecyclerView.Adapter {
         TextView textView;
         public MyViewHolder(View itemView) {
             super(itemView);
-            textView=itemView.findViewById(R.id.tv_rangking_list);
+           // textView=itemView.findViewById(R.id.tv_rangking_list);
         }
 
         public TextView getTextView() {
