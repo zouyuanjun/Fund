@@ -74,8 +74,13 @@ public class Fr_rangking_list extends Fragment {
         //设置分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         adapter=new Rv_rangking_list_adapter(arrayList);
-        recyclerView.setAdapter(adapter);
+
         network=new Network();
         network.Loadhtpp(handler,url,what);
+        View view = LayoutInflater.from(context).inflate(R.layout.rv_rangking_list_header, null);
+
+       // final StickyRecyclerHeadersDecoration headersDecor = new StickyRecyclerHeadersDecoration(adapter);
+       // recyclerView.addItemDecoration(headersDecor);
+        recyclerView.setAdapter(adapter);
     }
 }

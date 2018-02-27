@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class RateTextView extends android.support.v7.widget.AppCompatTextView{
 
-    String string;
+    String string="---";
     Paint paint=new Paint();
 
     Paint paint1=new Paint();
@@ -36,10 +36,12 @@ public class RateTextView extends android.support.v7.widget.AppCompatTextView{
 
     public void setdata(String s){
         this.string=s;
+        Log.d("5555","画布数据"+s);
         paint.setColor(Color.RED);
-        paint.setTextSize(70);
+        paint.setTextSize(40);
         paint1.setColor(Color.GREEN);
-        paint1.setTextSize(70);
+        paint1.setTextSize(40);
+        draw(new Canvas());
     }
 
     @Override
@@ -58,7 +60,12 @@ public class RateTextView extends android.support.v7.widget.AppCompatTextView{
             Rect bounds = new Rect() ;
             //获取文本的Rect [区域]
             //参数一：要测量的文字、参数二：从位置0开始、参数三：到文字的长度、参数四：
-            paint.getTextBounds(string , 0 , string.length() , bounds);
+            try {
+                paint.getTextBounds(string , 0 , string.length() , bounds);
+            }catch (NullPointerException e){
+                paint.getTextBounds(string , 0 , 10 , bounds);
+            }
+
 
             //文字的宽度
             width = bounds.width() ;
@@ -72,10 +79,8 @@ public class RateTextView extends android.support.v7.widget.AppCompatTextView{
             //获取文本的Rect [区域]
             //参数一：要测量的文字、参数二：从位置0开始、参数三：到文字的长度、参数四：
             paint.getTextBounds(string , 0 , string.length() , bounds);
-            Log.d("5555","红色"+height);
             //文字的高度
             height = bounds.height() ;
-            Log.d("5555","红色"+height);
         }
         //设置文字控件的宽和高
         setMeasuredDimension(width , height);
@@ -95,15 +100,15 @@ public class RateTextView extends android.support.v7.widget.AppCompatTextView{
         try {
             double d=Double.parseDouble(string);
             if (d>0){
-                Log.d("5555","红色"+baseLine);
-                canvas.drawText(string,x,baseLine,paint);
+                Log.d("5555","红色"+baseLine+string);
+                canvas.drawText(string+"%",x,baseLine,paint);
             }else  {
                 Log.d("5555","绿色"+baseLine);
-                canvas.drawText(string,x,baseLine,paint1);
+                canvas.drawText(string+"%",x,baseLine,paint1);
             }
         }catch (NumberFormatException e){
             Log.d("5555",dy+"绿色"+baseLine);
-            canvas.drawText(string,x,baseLine,paint1);
+            canvas.drawText(string+"%",x,baseLine,paint1);
         };
     }
 }

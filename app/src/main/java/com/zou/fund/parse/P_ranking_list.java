@@ -51,7 +51,8 @@ public class P_ranking_list {
         }
         for (String s:arrayList){
             String a[]=s.split(",");
-            rangking_fundcode=a[0];
+            String code=a[0];
+            rangking_fundcode=code.substring(1,7);
             rangking_fundname=a[1];
             day=a[6];
             day=fomat(day);
@@ -84,7 +85,7 @@ public class P_ranking_list {
            double a=Double.parseDouble(data);
 
         DecimalFormat df = new DecimalFormat("0.00 ");//控制小数点位数
-        String s=df.format(a)+"%";
+        String s=df.format(a);
         return s;
     }catch (NumberFormatException e){
            return "--";

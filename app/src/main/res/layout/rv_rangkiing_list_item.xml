@@ -2,15 +2,13 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
                 android:padding="4dp"
-                android:layout_width="wrap_content"
+                android:layout_width="59dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_rangking_fundcode"
                 android:background="@color/color_ffffff"
@@ -22,65 +20,66 @@
                 android:id="@+id/tv_rangking_fundname"
                 android:singleLine="true"
                 android:text="华夏大盘精选"/>
-            <TextView
-                android:padding="2dp"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+
+            <com.zou.fund.customview.RateTextView
                 android:id="@+id/tv_day"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
                 android:background="@color/color_ffffff"
-                android:text="3.42%"/>
-            <TextView
+                android:padding="2dp"
+                />
+            <com.zou.fund.customview.RateTextView
                 android:padding="2dp"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_week"
-                android:text="3.42%"/>
-            <TextView
+                />
+            <com.zou.fund.customview.RateTextView
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_month"
                 android:background="@color/color_ffffff"
-                android:text="3.42%"/>
+                />
 
-            <TextView
+            <com.zou.fund.customview.RateTextView
                 android:padding="2dp"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_three_month"
-                android:text="3.42%"/>
-            <TextView
+                />
+            <com.zou.fund.customview.RateTextView
                 android:padding="10dp"
                 android:layout_width="70dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_six_month"
                 android:background="@color/color_ffffff"
-                android:text="3.42%"/>
-            <TextView
+                />
+            <com.zou.fund.customview.RateTextView
                 android:padding="2dp"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_this_year"
-                android:text="3.42%"/>
-            <TextView
+                />
+            <com.zou.fund.customview.RateTextView
                 android:padding="2dp"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_year"
                 android:background="@color/color_ffffff"
-                android:text="3.42%"/>
-            <TextView
+                />
+            <com.zou.fund.customview.RateTextView
                 android:padding="2dp"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_two_year"
-                android:text="3.42%"/>
-            <TextView
+               />
+            <com.zou.fund.customview.RateTextView
                 android:background="@color/color_ffffff"
                 android:padding="2dp"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/tv_max"
-                android:text="3.42%"/>
+                />
         </LinearLayout>
 
 
