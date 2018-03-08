@@ -8,8 +8,8 @@
         android:orientation="horizontal">
         <TextView
             android:gravity="center_horizontal"
-            android:padding="4dp"
-            android:layout_width="59dp"
+            android:padding="2dp"
+            android:layout_width="62dp"
             android:layout_height="wrap_content"
             android:id="@+id/tv_hrangking_fundcode"
             android:background="@color/color_ffffff"
@@ -24,8 +24,8 @@
             android:text="基金简称"/>
         <TextView
             android:id="@+id/tv_hday"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:background="@color/color_ffffff"
             android:padding="2dp"
@@ -33,15 +33,15 @@
         <TextView
             android:gravity="center_horizontal"
             android:padding="2dp"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
             android:id="@+id/tv_hweek"
             android:text="近一周"
             />
         <TextView
             android:gravity="center_horizontal"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
             android:id="@+id/tv_hmonth"
             android:text="近一月"
             android:background="@color/color_ffffff"
@@ -50,7 +50,7 @@
             android:gravity="center_horizontal"
             android:padding="2dp"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="近三月"
             android:id="@+id/tv_hthree_month"
             />
@@ -58,7 +58,7 @@
             android:gravity="center_horizontal"
             android:padding="2dp"
             android:layout_width="70dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:id="@+id/tv_hsix_month"
             android:text="近六月"
             android:background="@color/color_ffffff"
@@ -67,7 +67,7 @@
             android:gravity="center_horizontal"
             android:padding="2dp"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="今年"
             android:id="@+id/tv_hthis_year"
             />
@@ -75,7 +75,7 @@
             android:gravity="center_horizontal"
             android:padding="2dp"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:id="@+id/tv_hyear"
             android:text="近一年"
             android:background="@color/color_ffffff"
@@ -84,7 +84,7 @@
             android:gravity="center_horizontal"
             android:padding="2dp"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="近两年"
             android:id="@+id/tv_htwo_year"
             />
@@ -93,7 +93,7 @@
             android:background="@color/color_ffffff"
             android:padding="2dp"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="成立以来"
             android:id="@+id/tv_hmax"
             />

@@ -69,8 +69,8 @@ public class Rv_rangking_list_adapter extends RecyclerView.Adapter{
             super(itemView);
             rangking_fundcode=itemView.findViewById(R.id.tv_rangking_fundcode);
             rangking_fundname=itemView.findViewById(R.id.tv_rangking_fundname);
-            day=(RateTextView)itemView.findViewById(R.id.tv_day);
-            week=(RateTextView)itemView.findViewById(R.id.tv_week);
+            day=itemView.findViewById(R.id.tv_day);
+            week=itemView.findViewById(R.id.tv_week);
             month=itemView.findViewById(R.id.tv_month);
             this_year=itemView.findViewById(R.id.tv_this_year);
             three_month=itemView.findViewById(R.id.tv_three_month);

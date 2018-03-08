@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,77 +9,114 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="wrap_content"
+        >
 
         <TextView
             android:id="@+id/tv_myfund_name"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="220dp"
+            android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="12dp"
-            android:text="招商中证白酒指数分级"
-            android:textSize="18sp" />
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="9dp"
+            android:text="招商中证白酒指数分级" />
 
         <TextView
             android:id="@+id/tv_myfund_type"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/tv_myfund_name"
             android:layout_toEndOf="@+id/tv_myfund_name"
             android:paddingLeft="10dp"
-            android:text="股票型" />
+            android:text="" />
 
         <TextView
             android:id="@+id/tv_myfund_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tv_myfund_type"
-            android:layout_alignBottom="@+id/tv_myfund_type"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="17dp"
+            android:layout_alignBottom="@+id/sd_gxjj"
+            android:layout_alignStart="@+id/tv_myfund_yield"
             android:text="1101568" />
 
         <TextView
             android:id="@+id/tv_myfund_chicang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_myfund_code"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="16dp"
-            android:layout_toEndOf="@+id/sd_gxjj"
-            android:text="持仓：356" />
+            android:layout_alignTop="@+id/tv_myfund_name"
+            android:layout_toEndOf="@+id/textView"
+            android:text="356"
+            android:textColor="@color/red"
+            android:textSize="28dp" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/sd_gxjj"
             android:layout_width="676px"
             android:layout_height="421px"
             android:layout_alignStart="@+id/tv_myfund_name"
-            android:layout_alignTop="@+id/tv_myfund_chicang"
-            fresco:placeholderImage="@mipmap/ic_launcher_round"
-           />
+            android:layout_below="@+id/tv_myfund_name"
+            android:layout_marginTop="7dp"
+            fresco:placeholderImage="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/tv_myfund_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/tv_myfund_chicang"
-            android:layout_below="@+id/tv_myfund_chicang"
-            android:layout_marginTop="28dp"
-            android:text="基金净值" />
+            android:layout_alignStart="@+id/textView3"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="7dp"
+            android:text="基金净值"
+            android:textColor="@color/red"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tv_myfund_yield"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tv_myfund_price"
+            android:layout_below="@+id/textView4"
+            android:text="23.5"
+            android:textColor="@color/red"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_myfund_chicang"
+            android:layout_alignBottom="@+id/tv_myfund_chicang"
+            android:layout_toEndOf="@+id/sd_gxjj"
+            android:text="金额"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_myfund_chicang"
+            android:layout_alignBottom="@+id/tv_myfund_chicang"
+            android:layout_toEndOf="@+id/tv_myfund_chicang"
+            android:text="元"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/sd_gxjj"
+            android:layout_toEndOf="@+id/sd_gxjj"
+            android:text="净值"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tv_myfund_price"
-            android:layout_marginTop="15dp"
-            android:text="收益" />
+            android:layout_marginTop="19dp"
+            android:layout_toEndOf="@+id/sd_gxjj"
+            android:text="收益:"
+            android:textSize="12dp" />
 
 
     </RelativeLayout>

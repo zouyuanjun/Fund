@@ -6,6 +6,7 @@ import com.zou.fund.data.Fund_rankingdata_bean;
 
 import org.litepal.LitePal;
 import org.litepal.LitePalDB;
+import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
 import java.io.UnsupportedEncodingException;
@@ -36,18 +37,17 @@ public class P_ranking_list {
     }
     ArrayList<String> arrayList=new ArrayList();
     public ArrayList p_rangking_list(String HTML) throws UnsupportedEncodingException {
-        LitePalDB litePal=new LitePalDB("fund_id",1);
-        litePal.addClassName(com.zou.fund.sqlbean.Fund_id_bean.class.getName());
+        LitePalDB litePal=new LitePalDB("fund_ranking",1);
+        litePal.addClassName(com.zou.fund.data.Fund_rankingdata_bean.class.getName());
         LitePal.use(litePal);
         SQLiteDatabase db= Connector.getDatabase();
+        DataSupport.deleteAll(Fund_rankingdata_bean.class);
         String str = HTML;
         String pattern = "\".*?\"";             //正则匹配
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(str);
         while(m.find()) {
                arrayList.add(m.group());
-
-            //System.out.println(m.group());
         }
         for (String s:arrayList){
             String a[]=s.split(",");
@@ -73,6 +73,8 @@ public class P_ranking_list {
             max=a[15];
             max=fomat(max);
             Fund_rankingdata_bean fund_rankingdata_bean=new Fund_rankingdata_bean(rangking_fundcode,rangking_fundname,day,week,month,three_month,six_month,this_year,year,two_year,max);
+
+            fund_rankingdata_bean.save();
             array_f.add(fund_rankingdata_bean);
 
         }

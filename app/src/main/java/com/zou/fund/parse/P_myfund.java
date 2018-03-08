@@ -71,9 +71,11 @@ public class P_myfund {
         Elements els=doc.getElementsByClass("fundDetail-tit");
         Elements elements=els.select("span");
         Element elements1=elements.get(1);
-
         myfund_code=elements1.text();
         Log.d("基金代码",myfund_code+"");
+        if (elements1.text().length()>16){
+            myfund_code="040008";
+        }
     }
     public void getimageurl(){
         myfund_imurl="http://j4.dfcfw.com/charts/pic6/"+myfund_code+".png";
@@ -83,6 +85,6 @@ public class P_myfund {
         Element element=elements.get(1);
 
         Elements s=element.select("span");
-        myfund_price=s.get(0).text();
+        myfund_price=s.get(0).text()+","+s.get(1).text();
     }
 }

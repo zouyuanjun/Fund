@@ -15,24 +15,30 @@
                 android:id="@+id/et_myfund_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="输入基金代码"
+                android:hint="基金代码"
                 android:inputType="number"
                 android:layout_gravity="center_horizontal"/>
             <EditText
                 android:id="@+id/et_myfund_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="输入持仓份额"
+                android:hint="持仓份额"
                 android:inputType="number"
                 android:layout_gravity="center_horizontal"/>
             <EditText
                 android:id="@+id/et_myfund_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="输入平均单价"
+                android:hint="平均单价"
                 android:inputType="number"
                 android:layout_gravity="center_horizontal"/>
-
+            <EditText
+                android:id="@+id/et_myfund_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="手续费率"
+                android:inputType="number"
+                android:layout_gravity="center_horizontal"/>
             <Button
                 android:id="@+id/ib_myfund_save"
                 android:layout_width="100dp"

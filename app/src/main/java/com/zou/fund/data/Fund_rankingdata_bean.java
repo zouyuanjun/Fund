@@ -1,10 +1,13 @@
 package com.zou.fund.data;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by 邹远君 on 2018/2/14 0014.
+ * 基金排行，历史涨幅数据类
  */
 
-public class Fund_rankingdata_bean {
+public class Fund_rankingdata_bean extends DataSupport {
     String rangking_fundcode;
     String rangking_fundname;
     String day;

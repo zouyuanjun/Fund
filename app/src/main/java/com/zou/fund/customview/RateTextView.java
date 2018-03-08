@@ -36,11 +36,12 @@ public class RateTextView extends android.support.v7.widget.AppCompatTextView{
 
     public void setdata(String s){
         this.string=s;
-        Log.d("5555","画布数据"+s);
         paint.setColor(Color.RED);
         paint.setTextSize(40);
+        paint.setAntiAlias(true);
         paint1.setColor(Color.GREEN);
         paint1.setTextSize(40);
+        paint1.setAntiAlias(true);
         draw(new Canvas());
     }
 
@@ -100,14 +101,11 @@ public class RateTextView extends android.support.v7.widget.AppCompatTextView{
         try {
             double d=Double.parseDouble(string);
             if (d>0){
-                Log.d("5555","红色"+baseLine+string);
                 canvas.drawText(string+"%",x,baseLine,paint);
             }else  {
-                Log.d("5555","绿色"+baseLine);
                 canvas.drawText(string+"%",x,baseLine,paint1);
             }
         }catch (NumberFormatException e){
-            Log.d("5555",dy+"绿色"+baseLine);
             canvas.drawText(string+"%",x,baseLine,paint1);
         };
     }
