@@ -1,6 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/green">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/wite"
+                        android:text="最新净值" />
+
+                    <TextView
+                        android:id="@+id/tv_zuixjz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignStart="@+id/textView9"
+                        android:layout_marginStart="9dp"
+                        android:textColor="@color/wite"
+                        android:text="1.0845" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignTop="@+id/textView9"
+                        android:layout_marginEnd="69dp"
+                        android:textColor="@color/wite"
+                        android:text="日涨幅" />
+
+                    <TextView
+                        android:id="@+id/tv_zhangfu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignStart="@+id/textView11"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/wite"
+                        android:text="TextView" />
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/colorUn">
+                    <TextView
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:paddingLeft="15dp"
+                        android:id="@+id/tv_fundtype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="混合型" />
+
+                </LinearLayout>
+            <LinearLayout
+                android:padding="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:paddingLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="净值估算" />
+
+                <TextView
+                    android:id="@+id/tv_gsjz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1.5422" />
+
+                <TextView
+                    android:id="@+id/tv_gszhangfu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0.89%" />
+
+                <TextView
+                    android:id="@+id/tv_gstime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="03-08 15：00" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/color_2581ff">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/img_gszhangfu"
+                    android:layout_width="match_parent"
+                    android:layout_height="198dp"
+                    android:background="@color/color_2581ff"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="34dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:padding="3dp"
+                        android:text="股票名称"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:padding="3dp"
+                        android:text="持仓占比" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="50dp"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:paddingLeft="20dp"
+                        android:text="涨跌幅" />
+
+
+                </RelativeLayout>
+            </LinearLayout>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:id="@+id/fund_cc_listview">
+            </ListView>
+            <TextView
+                android:id="@+id/tv_chicangsum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </ScrollView>
+
 
 </android.support.constraint.ConstraintLayout>

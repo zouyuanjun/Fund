@@ -10,4 +10,6 @@
     <color name="color_333333">#333333</color>
     <color name="color_282d31">#282d31</color>
     <color name="color_ffffff">#FFFFCC</color>
+    <color name="green">#00ff99</color>
+    <color name="wite">#ffffff</color>
 </resources>

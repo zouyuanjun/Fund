@@ -2,12 +2,14 @@ package com.zou.fund;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.support.v7.widget.Toolbar;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zou.fund.bar.ChildFragment;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPagerAdapter viewPagerAdapter1;
     private List<Fragment> fragments1;
 
+    Toolbar toolbar;
+
     static public Context getContext() {
         return context;
     }
@@ -43,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
         Fresco.initialize(this.getApplicationContext());
         Log.d("5555","初始化图片完成");
         setContentView(R.layout.activity_main);
+        toolbar=findViewById(R.id.toolbar_main);
+        toolbar.setTitleTextColor(Color.YELLOW);
+        toolbar.setSubtitleTextColor(Color.parseColor("#80ff0000"));
+        //侧边栏的按钮
+        toolbar.setNavigationIcon(R.color.color_282d31);
+        //取代原本的actionbar
+        setSupportActionBar(toolbar);
+        //设置NavigationIcon的点击事件,需要放在setSupportActionBar之后设置才会生效,
         viewPager1 = (ViewPager) findViewById(R.id.viewpager1);
         SQLiteDatabase db= Connector.getDatabase();
         navitationScrollLayout = (NavitationScrollLayout) findViewById(R.id.bar1);

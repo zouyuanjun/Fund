@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,8 +34,10 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zou.fund.MainActivity;
 import com.zou.fund.R;
+import com.zou.fund.activity.Activity_fund;
 import com.zou.fund.adapter.Rv_myfund_adapter;
 import com.zou.fund.data.My_fund_bean;
+import com.zou.fund.parse.P_fund;
 import com.zou.fund.parse.P_myfund;
 import com.zou.fund.sqlbean.SQL_myfund;
 import com.zou.fund.util.Network;
@@ -125,7 +128,10 @@ public class Fr_myfund extends Fragment {
         adapter.setOnItemClickListener(new Rv_myfund_adapter.onItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Intent intent=new Intent(getActivity(),Activity_fund.class);
+                String fundcode=adapterarrayList.get(position).getMyfund_code();
+                intent.putExtra("code",fundcode);
+                startActivity(intent);
             }
             @Override
             public void onItemLongClick(View view, final int position) {      //长按删除
@@ -248,7 +254,7 @@ public class Fr_myfund extends Fragment {
                 window.dismiss();
             } else Toast.makeText(context, "保存失败", Toast.LENGTH_LONG).show();
         }
-    }
+    }  //保存新添加的数据
 
 
     private Handler handler = new Handler() {
@@ -256,6 +262,8 @@ public class Fr_myfund extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             String s1 = (String) msg.obj;
+            P_fund p_fund=new P_fund(s1);
+            p_fund.parse();
             P_myfund my_fund = new P_myfund(s1);
             ArrayList<My_fund_bean> arrayList = my_fund.parse();
             My_fund_bean my_fund_bean = arrayList.get(0);//获取解析出来的基金数据

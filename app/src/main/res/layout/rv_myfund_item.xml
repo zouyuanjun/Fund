@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/tv_myfund_name"
-            android:layout_width="220dp"
+            android:layout_width="230dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -47,7 +47,7 @@
             android:layout_toEndOf="@+id/textView"
             android:text="356"
             android:textColor="@color/red"
-            android:textSize="28dp" />
+            android:textSize="25dp" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/sd_gxjj"
