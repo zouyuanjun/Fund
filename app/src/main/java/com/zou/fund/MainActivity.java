@@ -1,6 +1,8 @@
 package com.zou.fund;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
@@ -10,8 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.zou.fund.activity.Activity_fund;
 import com.zou.fund.bar.ChildFragment;
 import com.zou.fund.bar.NavitationScrollLayout;
 import com.zou.fund.bar.ViewPagerAdapter;
@@ -34,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment> fragments1;
 
     Toolbar toolbar;
+    EditText editText;
+    ImageButton imageButton;
 
     static public Context getContext() {
         return context;
@@ -46,12 +55,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this.getApplicationContext());
         Log.d("5555","初始化图片完成");
+
         setContentView(R.layout.activity_main);
+        editText=findViewById(R.id.ed_main_seach);
+        imageButton=findViewById(R.id.ib_main_seach);
+        editText.clearFocus();
+
         toolbar=findViewById(R.id.toolbar_main);
         toolbar.setTitleTextColor(Color.YELLOW);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,Activity_fund.class);
+                String fundcode=editText.getText().toString();
+                intent.putExtra("code",fundcode);
+                startActivity(intent);
+            }
+        });
         toolbar.setSubtitleTextColor(Color.parseColor("#80ff0000"));
         //侧边栏的按钮
-        toolbar.setNavigationIcon(R.color.color_282d31);
+      //  toolbar.setNavigationIcon(R.color.color_282d31);
         //取代原本的actionbar
         setSupportActionBar(toolbar);
         //设置NavigationIcon的点击事件,需要放在setSupportActionBar之后设置才会生效,

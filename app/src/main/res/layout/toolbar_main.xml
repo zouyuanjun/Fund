@@ -4,15 +4,20 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <EditText
+                android:id="@+id/ed_main_seach"
                 android:layout_width="200dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:hint="请输入查询代码"/>
             <ImageButton
+                android:id="@+id/ib_main_seach"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
 

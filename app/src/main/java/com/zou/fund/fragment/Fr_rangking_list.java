@@ -55,10 +55,20 @@ public class Fr_rangking_list extends Fragment {
         rootView= inflater.inflate(R.layout.fr_rangking_list, container, false);
         recyclerView=rootView.findViewById(R.id.rv_rangking_list);
         context=this.getActivity();
-        initview();
-        initdata();
+//        initview();
+//        initdata();
         return rootView;
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            initview();
+            initdata();
+        }
+    }
+
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
