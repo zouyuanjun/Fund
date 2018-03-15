@@ -30,4 +30,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.0.2'
     compile 'org.litepal.android:core:1.6.1'
     compile 'com.facebook.fresco:fresco:1.7.1'
+    compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
 }

@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -43,6 +44,8 @@ public class Activity_fund extends AppCompatActivity {
     Network network;
     Lv_fundchicang_adapter lv_fundchicang_adapter;
 
+    TextView tv_lsjz;
+
     ArrayList<Fund> arrayList=new ArrayList<>();
     Fund fund;
 
@@ -56,6 +59,16 @@ public class Activity_fund extends AppCompatActivity {
         initview();
     }
     private void initview(){
+        tv_lsjz=findViewById(R.id.tv_lsjz);
+        tv_lsjz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Activity_fund.this,Activity_lsji.class);
+                String fundcode=fund.getFund_code();
+                intent.putExtra("code",fundcode);
+                startActivity(intent);
+            }
+        });
         zuixjz=findViewById(R.id.tv_zuixjz);
         zhangfu=findViewById(R.id.tv_zhangfu);
         type=findViewById(R.id.tv_fundtype);

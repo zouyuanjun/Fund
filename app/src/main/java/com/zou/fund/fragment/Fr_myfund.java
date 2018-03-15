@@ -94,9 +94,7 @@ public class Fr_myfund extends Fragment {
                 add_fund_popwindows();
             }
         });
-        if (network == null) {
-            network = new Network();
-        }
+        network = Network.getnetwork();
         initdata();
         initview();
         return rootView;

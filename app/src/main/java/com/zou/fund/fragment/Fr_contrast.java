@@ -63,9 +63,7 @@ public class Fr_contrast extends Fragment {
         context= this.getActivity();
         initData();
         initView();
-        if (network==null){
-            network=new Network();
-        }
+            network=Network.getnetwork();
        // network.Loadhtpp(handler,url,what);
         return rootView;
     }

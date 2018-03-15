@@ -19,8 +19,9 @@ public class Network {
 
     OkHttpClient client;
     ExecutorService executor;
+    static Network network=new Network();
 
-    public Network() {
+    private Network() {
         client = new OkHttpClient();
 
         executor= Executors.newCachedThreadPool();
@@ -29,6 +30,9 @@ public class Network {
 
     }
 
+    public static Network getnetwork(){
+        return network;
+    }
     public void Loadhtpp(final Handler handler, final String url, final int what){
         executor.execute(new Runnable() {
             @Override
