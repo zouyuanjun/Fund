@@ -39,6 +39,9 @@ public class Activity_lsji extends AppCompatActivity {
     Network network;
     String code;
 
+    private List<String> pointValues = new ArrayList<String>();
+    private List<String> axisXValues = new ArrayList<String>();
+
     String[] date = {"10-22", "11-22", "12-22", "1-22", "6-22", "5-23", "5-22", "6-22", "5-23", "5-22"};//X轴的标注
     int[] score = {50, 42, 90, 33, 10, 74, 22, 18, 79, 20};//图表的数据点
     private List<PointValue> mPointValues = new ArrayList<PointValue>();
@@ -49,6 +52,11 @@ public class Activity_lsji extends AppCompatActivity {
             super.handleMessage(msg);
             String result= (String) msg.obj;
             P_lsjz p_lsjz=new P_lsjz(result);
+            pointValues=p_lsjz.getmPointValues();
+            axisXValues=p_lsjz.getmAxisXValues();
+            getAxisXLables();//获取x轴的标注
+            getAxisPoints();//获取坐标点
+            initLineChart();//初始化
         }
     };
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -58,21 +66,19 @@ public class Activity_lsji extends AppCompatActivity {
         setContentView(R.layout.activity_lsjz_chars);
         network=Network.getnetwork();
         code = getIntent().getStringExtra("code");
-        String url="https://e.lufunds.com/jijin/detail/jijin-net-list?pageNum=1&productId="+code+"&startDate=&endDate=&_=1521106254917";
+        String url="http://fund.jrj.com.cn/json/archives/history/netvalue?fundCode="+code+"&obj=obj&date=2018";
         network.Loadhtpp(handler,url,1);
-        Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+       // Long milliSecond = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
         lineChart = (LineChartView) findViewById(R.id.char_lsjz);
-        getAxisXLables();//获取x轴的标注
-        getAxisPoints();//获取坐标点
-        initLineChart();//初始化
+
     }
 
     /**
      * 设置X 轴的显示
      */
     private void getAxisXLables() {
-        for (int i = 0; i < date.length; i++) {
-            mAxisXValues.add(new AxisValue(i).setLabel(date[i]));
+        for (int i = 0; i < axisXValues.size(); i++) {
+            mAxisXValues.add(new AxisValue(i).setLabel(axisXValues.get(i)));
         }
     }
 
@@ -80,8 +86,8 @@ public class Activity_lsji extends AppCompatActivity {
      * 图表的每个点的显示
      */
     private void getAxisPoints() {
-        for (int i = 0; i < score.length; i++) {
-            mPointValues.add(new PointValue(i, score[i]));
+        for (int i = 0; i < pointValues.size(); i++) {
+            mPointValues.add(new PointValue(i, Float.parseFloat(pointValues.get(i))));
         }
     }
 

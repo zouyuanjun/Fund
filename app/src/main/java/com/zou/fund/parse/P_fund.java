@@ -89,7 +89,7 @@ public class P_fund {
         Element elements1=elements.get(1);
         fund_code=elements1.text();
         if (elements1.text().length()>16){  //040008基金特殊处理
-            fund_code="040008";
+            fund_code=elements.text().substring(5,11);
         }
     }
     public void getimageurl(){

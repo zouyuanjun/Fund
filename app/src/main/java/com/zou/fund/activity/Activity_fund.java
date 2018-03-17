@@ -65,6 +65,7 @@ public class Activity_fund extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(Activity_fund.this,Activity_lsji.class);
                 String fundcode=fund.getFund_code();
+                Log.d("fund","历史净值代码"+fundcode);
                 intent.putExtra("code",fundcode);
                 startActivity(intent);
             }
@@ -83,7 +84,7 @@ public class Activity_fund extends AppCompatActivity {
     }
     private void initdata(){
         String code=getIntent().getStringExtra("code");
-        network=new Network();
+        network=Network.getnetwork();
         network.Loadhtpp(handler,"http://fund.eastmoney.com/" + code + ".html",1);
     }
     private Handler handler=new Handler(){

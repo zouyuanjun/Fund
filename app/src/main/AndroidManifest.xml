@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.Activity_fund"></activity>
+        <activity android:name=".activity.Activity_lsji"></activity>
     </application>
 
 </manifest>

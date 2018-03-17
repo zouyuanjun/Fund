@@ -99,7 +99,7 @@ public class Fr_rangking_list extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         adapter=new Rv_rangking_list_adapter(arrayList);
 
-        network=new Network();
+        network=Network.getnetwork();
         network.Loadhtpp(handler,url,what);
         recyclerView.setAdapter(adapter);
     }
