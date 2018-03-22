@@ -1,6 +1,9 @@
 package com.zou.fund.parse;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.service.autofill.SaveCallback;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.zou.fund.data.Fund_rankingdata_bean;
 
@@ -24,16 +27,17 @@ public class P_ranking_list {
 
     String rangking_fundcode;
     String rangking_fundname;
-    String day;
-    String week;
-    String month;
-    String this_year;
-    String three_month;
-    String six_month;
-    String year;
-    String two_year;
-    String max;
+    Double day;
+    Double week;
+    Double month;
+    Double this_year;
+    Double three_month;
+    Double six_month;
+    Double year;
+    Double two_year;
+    Double max;
     public P_ranking_list() {
+        Log.d("Prangking","每日净值开始解析");
     }
     ArrayList<String> arrayList=new ArrayList();
     public ArrayList p_rangking_list(String HTML) throws UnsupportedEncodingException {
@@ -54,43 +58,37 @@ public class P_ranking_list {
             String code=a[0];
             rangking_fundcode=code.substring(1,7);
             rangking_fundname=a[1];
-            day=a[6];
-            day=fomat(day);
-            week=a[7];
-            week=fomat(week);
-            month=a[8];
-            month=fomat(month);
-            three_month=a[9];
-            three_month=fomat(three_month);
-            six_month=a[10];
-            six_month=fomat(six_month);
-            this_year=a[14];
-            this_year=fomat(this_year);
-            year=a[11];
-            year=fomat(year);
-            two_year=a[12];
-            two_year=fomat(two_year);
-            max=a[15];
-            max=fomat(max);
+            day=fomat(a[6]);
+            week=fomat(a[7]);
+            month=fomat(a[8]);
+            three_month=fomat(a[9]);
+            six_month=fomat(a[10]);
+            this_year=fomat(a[14]);
+            year=fomat(a[11]);
+            two_year=fomat(a[12]);
+            max=fomat(a[15]);
             Fund_rankingdata_bean fund_rankingdata_bean=new Fund_rankingdata_bean(rangking_fundcode,rangking_fundname,day,week,month,three_month,six_month,this_year,year,two_year,max);
-
-            fund_rankingdata_bean.save();
             array_f.add(fund_rankingdata_bean);
 
         }
-
+    DataSupport.saveAllAsync(array_f).listen(new org.litepal.crud.callback.SaveCallback() {
+        @Override
+        public void onFinish(boolean success) {
+            Log.d("Prangking","每日净值保存成功");
+        }
+    });
     return array_f;
     }
     //格式化增长率百分数
-    public String fomat(String data){
+    public double fomat(String data){
        try {
-           double a=Double.parseDouble(data);
+           Double a=Double.parseDouble(data);
 
         DecimalFormat df = new DecimalFormat("0.00 ");//控制小数点位数
-        String s=df.format(a);
+        Double s=Double.parseDouble(df.format(a));
         return s;
     }catch (NumberFormatException e){
-           return "--";
+           return 0;
        }
     };
 }

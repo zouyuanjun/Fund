@@ -1,27 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <EditText
                 android:id="@+id/ed_main_seach"
-                android:layout_width="200dp"
+
+                android:layout_width="240dp"
                 android:layout_height="40dp"
-                android:hint="请输入查询代码"/>
+                android:hint="请输入查询代码"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"/>
+
             <ImageButton
                 android:id="@+id/ib_main_seach"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/icon_seach" />
         </android.support.v7.widget.Toolbar>
+
 
     </LinearLayout>
 

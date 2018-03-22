@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -41,6 +42,7 @@ public class Activity_fund extends AppCompatActivity {
     TextView chicangsun;
     ListView listView;
     SimpleDraweeView img_gsjz;
+    ProgressBar progressBar;
     Network network;
     Lv_fundchicang_adapter lv_fundchicang_adapter;
 
@@ -70,6 +72,7 @@ public class Activity_fund extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        progressBar=findViewById(R.id.fund_chicang_progressBar);
         zuixjz=findViewById(R.id.tv_zuixjz);
         zhangfu=findViewById(R.id.tv_zhangfu);
         type=findViewById(R.id.tv_fundtype);
@@ -107,6 +110,7 @@ public class Activity_fund extends AppCompatActivity {
             for (Fund_chicang f:fund.getArrayList()){
                 fund_chicang.add(f);
             };
+            progressBar.setVisibility(View.GONE);
             lv_fundchicang_adapter.notifyDataSetChanged();
         }
     };

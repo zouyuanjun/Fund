@@ -10,12 +10,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zou.fund.activity.Activity_fund;
@@ -59,7 +63,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         editText=findViewById(R.id.ed_main_seach);
         imageButton=findViewById(R.id.ib_main_seach);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         editText.clearFocus();
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId== EditorInfo.IME_ACTION_SEARCH){
+                    Intent intent=new Intent(MainActivity.this,Activity_fund.class);
+                    String fundcode=editText.getText().toString();
+                    intent.putExtra("code",fundcode);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
 
         toolbar=findViewById(R.id.toolbar_main);
         toolbar.setTitleTextColor(Color.YELLOW);
@@ -72,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        toolbar.setSubtitleTextColor(Color.parseColor("#80ff0000"));
+        toolbar.setSubtitleTextColor(Color.parseColor("#ff0000"));
         //侧边栏的按钮
       //  toolbar.setNavigationIcon(R.color.color_282d31);
         //取代原本的actionbar

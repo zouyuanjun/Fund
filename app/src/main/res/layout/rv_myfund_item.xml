@@ -56,7 +56,10 @@
             android:layout_alignStart="@+id/tv_myfund_name"
             android:layout_below="@+id/tv_myfund_name"
             android:layout_marginTop="7dp"
-            fresco:placeholderImage="@mipmap/ic_launcher_round" />
+            app:progressBarImage="@drawable/pross"
+            app:progressBarAutoRotateInterval="5000"
+            app:progressBarImageScaleType="centerInside"
+             />
 
         <TextView
             android:id="@+id/tv_myfund_price"

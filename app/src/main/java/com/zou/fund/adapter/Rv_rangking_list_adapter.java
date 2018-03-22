@@ -24,7 +24,14 @@ public class Rv_rangking_list_adapter extends RecyclerView.Adapter{
         Log.d("5555","适配器数据大小"+list.size());
         this.list = list;
     }
-
+    public interface  onItemClickListener{
+        void onItemClick(View view ,int position);
+        void  onItemLongClick(View view,int position);
+    }
+    private onItemClickListener onItemClickListener;
+    public void setOnItemClickListener(onItemClickListener onItemClickListener){
+        this.onItemClickListener=onItemClickListener;
+    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_rangkiing_list_item, null);
@@ -33,19 +40,36 @@ public class Rv_rangking_list_adapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         ((MyViewHolder)holder).getRangking_fundcode().setText(list.get(position).getRangking_fundcode());
         ((MyViewHolder)holder).getRangking_fundname().setText(list.get(position).getRangking_fundname());
-        ((MyViewHolder)holder).getDay().setdata(list.get(position).getDay());
-        ((MyViewHolder)holder).getWeek().setdata(list.get(position).getWeek());
-        ((MyViewHolder)holder).getMonth().setdata(list.get(position).getMonth());
-        ((MyViewHolder)holder).getThree_month().setdata(list.get(position).getThree_month());
-        ((MyViewHolder)holder).getSix_month().setdata(list.get(position).getSix_month());
-        ((MyViewHolder)holder).getThis_year().setdata(list.get(position).getThis_year());
-        ((MyViewHolder)holder).getYear().setdata(list.get(position).getYear());
-        ((MyViewHolder)holder).getTwo_year().setdata(list.get(position).getTwo_year());
-        ((MyViewHolder)holder).getMax().setdata(list.get(position).getMax());
+        ((MyViewHolder)holder).getDay().setdata(list.get(position).getDay()+"");
+        ((MyViewHolder)holder).getWeek().setdata(list.get(position).getWeek()+"");
+        ((MyViewHolder)holder).getMonth().setdata(list.get(position).getMonth()+"");
+        ((MyViewHolder)holder).getThree_month().setdata(list.get(position).getThree_month()+"");
+        ((MyViewHolder)holder).getSix_month().setdata(list.get(position).getSix_month()+"");
+        ((MyViewHolder)holder).getThis_year().setdata(list.get(position).getThis_year()+"");
+        ((MyViewHolder)holder).getYear().setdata(list.get(position).getYear()+"");
+        ((MyViewHolder)holder).getTwo_year().setdata(list.get(position).getTwo_year()+"");
+        ((MyViewHolder)holder).getMax().setdata(list.get(position).getMax()+"");
+        if(onItemClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int layoutPositon=holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.itemView,layoutPositon);
 
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int layoutPositon=holder.getLayoutPosition();
+                    onItemClickListener.onItemLongClick(holder.itemView,layoutPositon);
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
