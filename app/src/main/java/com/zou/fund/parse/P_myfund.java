@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
-/**
+/**格式化主页单个基金的数据
  * Created by 邹远君 on 2018/1/18 0018.
  */
 
@@ -21,16 +21,15 @@ public class P_myfund {
     String myfund_code;          //基金代码
     String myfund_imurl;     //估算净值图片url
     String myfund_jjjz;    //基金净值
-    String myfund_jjzf;
+    String myfund_jjzf;   //基金涨幅
     String result;
-    ArrayList<My_fund_bean> arrayList=new ArrayList<>();
     Document doc;
 
     public P_myfund(String result) {
         this.result = result;
     }
 
-    public ArrayList<My_fund_bean> parse(){
+    public My_fund_bean parse(){
         My_fund_bean my_fund_bean;
        if (result.length()>5000) {
            doc = Jsoup.parse(result);
@@ -43,8 +42,7 @@ public class P_myfund {
        }else {
            my_fund_bean=new My_fund_bean("代码错误","错误","000000",0.0,0.0,"","","错误","");
        }
-       arrayList.add(my_fund_bean);
-        return arrayList;
+        return my_fund_bean;
     }
     public void getname(){
         //获取基金名称
@@ -64,7 +62,6 @@ public class P_myfund {
        // Elements elements=els.select("td");
         Elements elements1=els.select("a");
         myfund_type=elements1.get(0).text();
-        Log.d("基金类型",myfund_type);
 
     }
     public void getcode(){
@@ -75,7 +72,6 @@ public class P_myfund {
         if (elements1.text().length()>16){
             myfund_code=elements.text().substring(5,11);
         }
-        Log.d("p基金代码",myfund_code+"");
     }
     public void getimageurl(){
         myfund_imurl="http://j4.dfcfw.com/charts/pic6/"+myfund_code+".png";

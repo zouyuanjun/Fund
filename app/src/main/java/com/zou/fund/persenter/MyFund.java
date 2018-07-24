@@ -45,19 +45,12 @@ public class MyFund implements MyFundview {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             String s1 = (String) msg.obj;
-            P_fund p_fund = new P_fund(s1);
-            p_fund.parse();
             P_myfund my_fund = new P_myfund(s1);
-            ArrayList<My_fund_bean> arrayList = my_fund.parse();
-            My_fund_bean my_fund_bean = arrayList.get(0);//获取解析出来的基金数据
-
+            My_fund_bean my_fund_bean =my_fund.parse();//获取解析出来的基金数据
             for (SQL_myfund sql_myfund : sqLiteList) {
-                Log.d("55555", "数据库代码" + sql_myfund.getMyfund_code() + "解析代码" + my_fund_bean.getMyfund_code());
-
                 while (sql_myfund.getMyfund_code().equals(my_fund_bean.getMyfund_code())) {
                     String zf = my_fund_bean.getMyfund_jjzf();
                     String jz = my_fund_bean.getMyfund_jjjz();
-
                     DecimalFormat df = new DecimalFormat("0.00 ");//控制小数点位数
                     Double fund_num = sql_myfund.getMyfund_num();
                     Double price = Double.parseDouble(jz);
@@ -114,12 +107,16 @@ public class MyFund implements MyFundview {
             values.put("myfund_num", inputnum);
             values.put("myfund_cost", inputcost);
             sqlHelper.updata(values, "myfund_code = ?", inputcode);
+            sqLiteList.clear();
+            sqLiteList = (List<SQL_myfund>) sqlHelper.querydata();
             String url = "http://fund.eastmoney.com/" + inputcode + ".html";
             network.Loadhtpp(handler, url, 1);
         }
         if (flg == 1) {   //不存在则新建
             SQL_myfund sql_myfund = new SQL_myfund(inputcode, inputnum, inputcost, inputcharge);
             if (sql_myfund.save()) {
+                sqLiteList.clear();
+                sqLiteList = (List<SQL_myfund>) sqlHelper.querydata();
                 String url = "http://fund.eastmoney.com/" + inputcode + ".html";
                 network.Loadhtpp(handler, url, 1);
                 issave=true;
@@ -128,5 +125,13 @@ public class MyFund implements MyFundview {
             }
         }
         return issave;
+    }
+
+    public void deletefund(String fundcode){
+        sqlHelper.delete("myfund_code=?",fundcode);
+    }
+
+    public void buyfund(){
+
     }
 }

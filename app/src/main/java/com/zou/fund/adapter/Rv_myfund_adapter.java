@@ -49,8 +49,8 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
                 + "<font ><small>"+arrayList.get(position).getMyfund_code()+"<small></font>";
         ((MyViewHolder)holder).getMyfund_name().setText(Html.fromHtml(HTML));
         //((MyViewHolder)holder).getMyfund_name().setText(arrayList.get(position).getMyfund_name());
-       // ((MyViewHolder)holder).getMyfund_type().setText(arrayList.get(position).getMyfund_type());
-       // ((MyViewHolder)holder).getMyfund_code().setText(arrayList.get(position).getMyfund_code());
+       ((MyViewHolder)holder).getMyfund_type().setText(arrayList.get(position).getMyfund_type());
+        ((MyViewHolder)holder).getMyfund_code().setText(arrayList.get(position).getMyfund_code());
         ((MyViewHolder)holder).getMyfund_chicang().setText(df.format(arrayList.get(position).getMyfund_worth()));
         ((MyViewHolder)holder).getMyfund_price().setText(Html.fromHtml(arrayList.get(position).getMyfund_jjjz()));
         ((MyViewHolder)holder).getMyfund_yield().setText(Html.fromHtml(arrayList.get(position).getMyfund_yield()));
@@ -93,7 +93,6 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             myfund_name = itemView.findViewById(R.id.tv_myfund_name);
             myfund_type = itemView.findViewById(R.id.tv_myfund_type);
             myfund_code = itemView.findViewById(R.id.tv_myfund_code);
@@ -102,23 +101,18 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
             myfund_yield=itemView.findViewById(R.id.tv_myfund_yield);
             sd_gxjj = itemView.findViewById(R.id.sd_gxjj);
         }
-
         public TextView getMyfund_name() {
             return myfund_name;
         }
-
         public TextView getMyfund_type() {
             return myfund_type;
         }
-
         public TextView getMyfund_code() {
             return myfund_code;
         }
-
         public TextView getMyfund_chicang() {
             return myfund_chicang;
         }
-
         public SimpleDraweeView getSd_gxjj() {
             return sd_gxjj;
         }

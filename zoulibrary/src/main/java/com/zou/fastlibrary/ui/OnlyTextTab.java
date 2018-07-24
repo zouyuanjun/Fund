@@ -25,7 +25,7 @@ public class OnlyTextTab extends BaseTabItem {
 
     @Override
     public void setChecked(boolean checked) {
-        mTitle.setTextColor(checked ? 0xFFF4B400 : 0x56000000);
+        mTitle.setTextColor(checked ? 0xFFFFFFFF : 0x56000000);
     }
 
     @Override

@@ -150,8 +150,10 @@ public class Fr_myfund extends Fragment implements MyFundview{
                     public void onClick(DialogInterface dialog, int which) {
                         String fundcode=adapterarrayList.get(position).getMyfund_code();//得到长按项的基金代码
                         Log.d("myfund","删除的代码"+ fundcode);
-                        sqlHelper.delete("myfund_code=?",fundcode);
-                        myFund.getdata();
+                        myFund.deletefund(fundcode);
+                        adapter.removeItem(position);
+                        int Item=adapter.getItemCount();
+                        adapter.notifyItemRangeChanged(position,Item);
                         Toast.makeText(context, "已删除", Toast.LENGTH_LONG).show();
                     }
                 }).setPositiveButton("买入", new DialogInterface.OnClickListener() {
