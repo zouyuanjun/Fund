@@ -23,20 +23,20 @@
                 android:singleLine="true"
                 android:text="华夏大盘精选"/>
 
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:id="@+id/tv_day"
                 android:layout_width="55dp"
                 android:layout_height="25dp"
                 android:background="@color/color_ffffff"
                 android:paddingLeft="2dp"
                 />
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:paddingLeft="2dp"
                 android:layout_width="55dp"
                 android:layout_height="25dp"
                 android:id="@+id/tv_week"
                 />
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:padding="2dp"
                 android:layout_width="55dp"
                 android:layout_height="25dp"
@@ -44,39 +44,39 @@
                 android:background="@color/color_ffffff"
                 />
 
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:paddingLeft="2dp"
                 android:layout_width="60dp"
                 android:layout_height="25dp"
                 android:id="@+id/tv_three_month"
                 />
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:paddingLeft="2dp"
                 android:layout_width="70dp"
                 android:layout_height="25dp"
                 android:id="@+id/tv_six_month"
                 android:background="@color/color_ffffff"
                 />
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:paddingLeft="2dp"
                 android:layout_width="60dp"
                 android:layout_height="25dp"
                 android:id="@+id/tv_this_year"
                 />
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:paddingLeft="2dp"
                 android:layout_width="60dp"
                 android:layout_height="25dp"
                 android:id="@+id/tv_year"
                 android:background="@color/color_ffffff"
                 />
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:paddingLeft="2dp"
                 android:layout_width="60dp"
                 android:layout_height="25dp"
                 android:id="@+id/tv_two_year"
                />
-            <com.zou.fund.customview.RateTextView
+            <com.zou.fund.view.customview.RateTextView
                 android:background="@color/color_ffffff"
                 android:paddingLeft="2dp"
                 android:layout_width="60dp"

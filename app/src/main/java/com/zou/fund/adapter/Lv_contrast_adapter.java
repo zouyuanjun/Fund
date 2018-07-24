@@ -7,8 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zou.fund.R;
-import com.zou.fund.data.Fund_position_arraylist;
-import com.zou.fund.data.Fund_position_bean;
+import com.zou.fund.databean.Fund_position_arraylist;
+import com.zou.fund.databean.Fund_position_bean;
 
 import java.util.ArrayList;
 

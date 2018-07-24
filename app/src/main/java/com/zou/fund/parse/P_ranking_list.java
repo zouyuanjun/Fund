@@ -1,11 +1,9 @@
 package com.zou.fund.parse;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.service.autofill.SaveCallback;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.zou.fund.data.Fund_rankingdata_bean;
+import com.zou.fund.databean.Fund_rankingdata_bean;
 
 import org.litepal.LitePal;
 import org.litepal.LitePalDB;
@@ -42,7 +40,7 @@ public class P_ranking_list {
     ArrayList<String> arrayList=new ArrayList();
     public ArrayList p_rangking_list(String HTML) throws UnsupportedEncodingException {
         LitePalDB litePal=new LitePalDB("fund_ranking",1);
-        litePal.addClassName(com.zou.fund.data.Fund_rankingdata_bean.class.getName());
+        litePal.addClassName(com.zou.fund.databean.Fund_rankingdata_bean.class.getName());
         LitePal.use(litePal);
         SQLiteDatabase db= Connector.getDatabase();
         DataSupport.deleteAll(Fund_rankingdata_bean.class);

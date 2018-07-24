@@ -2,7 +2,7 @@ package com.zou.fund.parse;
 
 import android.util.Log;
 
-import com.zou.fund.data.My_fund_bean;
+import com.zou.fund.databean.My_fund_bean;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,14 +20,14 @@ public class P_myfund {
     String myfund_type;          //类型
     String myfund_code;          //基金代码
     String myfund_imurl;     //估算净值图片url
-    String myfund_price;    //基金净值
+    String myfund_jjjz;    //基金净值
+    String myfund_jjzf;
     String result;
     ArrayList<My_fund_bean> arrayList=new ArrayList<>();
     Document doc;
 
     public P_myfund(String result) {
         this.result = result;
-        Log.d("4444","字符长度"+result.length());
     }
 
     public ArrayList<My_fund_bean> parse(){
@@ -39,9 +39,9 @@ public class P_myfund {
            getcode();
            getimageurl();
            getprice();
-           my_fund_bean = new My_fund_bean(myfund_name, myfund_type, myfund_code, 0.0, 0.0, myfund_imurl,"0",myfund_price);
+           my_fund_bean = new My_fund_bean(myfund_name, myfund_type, myfund_code, 0.0, 0.0, myfund_imurl,"0",myfund_jjjz,myfund_jjzf);
        }else {
-           my_fund_bean=new My_fund_bean("代码错误","错误","000000",0.0,0.0,"","","错误");
+           my_fund_bean=new My_fund_bean("代码错误","错误","000000",0.0,0.0,"","","错误","");
        }
        arrayList.add(my_fund_bean);
         return arrayList;
@@ -85,6 +85,7 @@ public class P_myfund {
         Element element=elements.get(1);
 
         Elements s=element.select("span");
-        myfund_price=s.get(0).text()+","+s.get(1).text();
+        myfund_jjjz=s.get(0).text();
+        myfund_jjzf=s.get(1).text();
     }
 }

@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zou.fund.R;
-import com.zou.fund.customview.RateTextView;
-import com.zou.fund.data.Fund_rankingdata_bean;
+import com.zou.fund.view.customview.RateTextView;
+import com.zou.fund.databean.Fund_rankingdata_bean;
 
 import java.util.ArrayList;
 

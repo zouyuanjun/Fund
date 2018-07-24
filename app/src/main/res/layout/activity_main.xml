@@ -4,24 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.zou.fund.MainActivity">
+    tools:context="com.zou.fund.view.activity.MainActivity">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
                 <include layout="@layout/toolbar_main"></include>
-                <com.zou.fund.bar.NavitationScrollLayout
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager1"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    >
+                </android.support.v4.view.ViewPager>
+                <com.zou.fund.view.bar.NavitationScrollLayout
                     android:id="@+id/bar1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="#0000"/>
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewpager1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-                </android.support.v4.view.ViewPager>
+
         </LinearLayout>
 
 

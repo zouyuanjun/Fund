@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zou.fund.R;
-import com.zou.fund.data.My_fund_bean;
+import com.zou.fund.databean.My_fund_bean;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_myfund_item, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_myfund_item, parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
@@ -52,7 +52,7 @@ public class Rv_myfund_adapter extends RecyclerView.Adapter {
        // ((MyViewHolder)holder).getMyfund_type().setText(arrayList.get(position).getMyfund_type());
        // ((MyViewHolder)holder).getMyfund_code().setText(arrayList.get(position).getMyfund_code());
         ((MyViewHolder)holder).getMyfund_chicang().setText(df.format(arrayList.get(position).getMyfund_worth()));
-        ((MyViewHolder)holder).getMyfund_price().setText(Html.fromHtml(arrayList.get(position).getMyfund_price()));
+        ((MyViewHolder)holder).getMyfund_price().setText(Html.fromHtml(arrayList.get(position).getMyfund_jjjz()));
         ((MyViewHolder)holder).getMyfund_yield().setText(Html.fromHtml(arrayList.get(position).getMyfund_yield()));
          Uri uri = Uri.parse(arrayList.get(position).getMyfund_imurl());
         ((MyViewHolder)holder).getSd_gxjj().setImageURI(uri);

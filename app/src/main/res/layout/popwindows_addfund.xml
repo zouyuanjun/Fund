@@ -1,54 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
-            <EditText
-                android:id="@+id/et_myfund_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="基金代码"
-                android:inputType="number"
-                android:layout_gravity="center_horizontal"/>
-            <EditText
-                android:id="@+id/et_myfund_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="持仓份额"
-                android:inputType="number"
-                android:layout_gravity="center_horizontal"/>
-            <EditText
-                android:id="@+id/et_myfund_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="平均单价"
-                android:inputType="number"
-                android:layout_gravity="center_horizontal"/>
-            <EditText
-                android:id="@+id/et_myfund_charge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="手续费率"
-                android:inputType="number"
-                android:layout_gravity="center_horizontal"/>
-            <Button
-                android:id="@+id/ib_myfund_save"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="保存"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item"
+    >
 
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/et_myfund_code"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.619"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
+                <EditText
+                    android:id="@+id/et_myfund_num"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.62"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_myfund_code" />
+
+                <EditText
+                    android:id="@+id/et_myfund_price"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.619"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_myfund_num" />
+
+                <EditText
+                    android:id="@+id/et_myfund_charge"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:inputType="number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.62"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_myfund_price" />
+
+                <Button
+                    android:id="@+id/ib_myfund_save"
+                    android:layout_width="150dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/btn_green_bg"
+                    android:text="保存"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_myfund_charge"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="基金代码:"
+                    android:textColor="@color/gray_4"
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_myfund_code"
+                    app:layout_constraintEnd_toStartOf="@+id/et_myfund_code"
+                    app:layout_constraintHorizontal_bias="0.99"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_myfund_code" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="持仓份额:"
+                    android:textColor="@color/gray_4"
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_myfund_num"
+                    app:layout_constraintEnd_toStartOf="@+id/et_myfund_num"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_myfund_num" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="平均单价:"
+                    android:textColor="@color/gray_4"
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_myfund_price"
+                    app:layout_constraintEnd_toStartOf="@+id/et_myfund_price"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_myfund_price" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="手续费率:"
+                    android:textColor="@color/gray_4"
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_myfund_charge"
+                    app:layout_constraintEnd_toStartOf="@+id/et_myfund_charge"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_myfund_charge" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="添加基金"
+                    android:textColor="@color/gray_4"
+                    android:textSize="@dimen/text_size_middle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,5 @@
 package com.zou.fund.adapter;
 
-import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.zou.fund.R;
-import com.zou.fund.data.Fund;
-import com.zou.fund.data.Fund_chicang;
+import com.zou.fund.databean.Fund_chicang;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.zou.fund">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS"></uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:name="org.litepal.LitePalApplication"
@@ -12,16 +14,21 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/fsfunding"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".view.activity.HomeActivity"
+            android:windowSoftInputMode="adjustPan"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.Activity_fund"></activity>
-        <activity android:name=".activity.Activity_lsji"></activity>
+        <activity android:name=".view.activity.MainActivity"></activity>
+        <activity android:name=".view.activity.Activity_fund"></activity>
+        <activity android:name=".view.activity.Activity_lsji"></activity>
+        <activity android:name="com.zou.fastlibrary.activity.BaseTabActivity"></activity>
+       <!--<activity android:name=".view.activity.HomeActivity"></activity>-->
     </application>
 
 </manifest>

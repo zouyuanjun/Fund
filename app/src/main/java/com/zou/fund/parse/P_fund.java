@@ -2,9 +2,8 @@ package com.zou.fund.parse;
 
 import android.util.Log;
 
-import com.zou.fund.data.Fund;
-import com.zou.fund.data.Fund_chicang;
-import com.zou.fund.data.My_fund_bean;
+import com.zou.fund.databean.Fund;
+import com.zou.fund.databean.Fund_chicang;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -95,6 +94,10 @@ public class P_fund {
     public void getimageurl(){
         gsimageurl="http://j4.dfcfw.com/charts/pic6/"+fund_code+".png";
     }
+
+    /**
+     * 估算涨幅
+     */
     public void getgsjz(){
         Elements elements=doc.getElementsByClass("floatleft");
         gsjz =elements.get(0).text();

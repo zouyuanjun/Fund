@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_main"
@@ -27,8 +28,8 @@
                 android:layout_width="240dp"
                 android:layout_height="40dp"
                 android:hint="请输入查询代码"
-                android:singleLine="true"
-                android:imeOptions="actionSearch"/>
+                android:imeOptions="actionSearch"
+                android:singleLine="true" />
 
             <ImageButton
                 android:id="@+id/ib_main_seach"

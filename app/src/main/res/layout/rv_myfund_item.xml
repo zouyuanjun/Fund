@@ -1,126 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    >
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <TextView
-            android:id="@+id/tv_myfund_name"
-            android:layout_width="230dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="9dp"
-            android:text="招商中证白酒指数分级" />
-
-        <TextView
-            android:id="@+id/tv_myfund_type"
-            android:layout_width="60dp"
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_myfund_name"
-            android:layout_toEndOf="@+id/tv_myfund_name"
-            android:paddingLeft="10dp"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/tv_myfund_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/sd_gxjj"
-            android:layout_alignStart="@+id/tv_myfund_yield"
-            android:text="1101568" />
-
-        <TextView
-            android:id="@+id/tv_myfund_chicang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tv_myfund_name"
-            android:layout_toEndOf="@+id/textView"
-            android:text="356"
-            android:textColor="@color/red"
-            android:textSize="25dp" />
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/sd_gxjj"
-            android:layout_width="676px"
-            android:layout_height="421px"
-            android:layout_alignStart="@+id/tv_myfund_name"
-            android:layout_below="@+id/tv_myfund_name"
-            android:layout_marginTop="7dp"
-            app:progressBarImage="@drawable/pross"
-            app:progressBarAutoRotateInterval="5000"
-            app:progressBarImageScaleType="centerInside"
-             />
-
-        <TextView
-            android:id="@+id/tv_myfund_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView3"
-            android:layout_below="@+id/textView3"
-            android:layout_marginTop="7dp"
-            android:text="基金净值"
-            android:textColor="@color/red"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/tv_myfund_yield"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/tv_myfund_price"
-            android:layout_below="@+id/textView4"
-            android:text="23.5"
-            android:textColor="@color/red"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tv_myfund_chicang"
-            android:layout_alignBottom="@+id/tv_myfund_chicang"
-            android:layout_toEndOf="@+id/sd_gxjj"
-            android:text="金额"
-            android:textSize="10dp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tv_myfund_chicang"
-            android:layout_alignBottom="@+id/tv_myfund_chicang"
-            android:layout_toEndOf="@+id/tv_myfund_chicang"
-            android:text="元"
-            android:textSize="10dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/sd_gxjj"
-            android:layout_toEndOf="@+id/sd_gxjj"
-            android:text="净值"
-            android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_myfund_price"
-            android:layout_marginTop="19dp"
-            android:layout_toEndOf="@+id/sd_gxjj"
-            android:text="收益:"
-            android:textSize="12dp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/list_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_myfund_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:maxLines="1"
+                    android:text="招商中证白酒指数分级"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_myfund_code"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_myfund_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingLeft="10dp"
+                    android:text="股票指数"
+                    android:textColor="@color/blue_btn"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_myfund_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/sd_gxjj"
+                    android:layout_alignStart="@+id/tv_myfund_yield"
+                    android:layout_marginEnd="8dp"
+                    android:text="1101568"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_myfund_type"
+                    app:layout_constraintTop_toTopOf="@+id/tv_myfund_name" />
+
+                <TextView
+                    android:id="@+id/tv_myfund_chicang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tv_myfund_name"
+                    android:layout_toEndOf="@+id/textView"
+                    android:text="356"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size_huge"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_myfund_name" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/sd_gxjj"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_alignStart="@+id/tv_myfund_name"
+                    android:layout_below="@+id/tv_myfund_name"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:actualImageScaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_myfund_price"
+                    app:progressBarAutoRotateInterval="5000"
+                    app:progressBarImage="@drawable/pross"
+                    app:progressBarImageScaleType="centerInside" />
+
+                <TextView
+                    android:id="@+id/tv_myfund_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textView3"
+                    android:layout_below="@+id/textView3"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="基金净值"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size_huge"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_myfund_chicang" />
+
+                <TextView
+                    android:id="@+id/tv_myfund_yield"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tv_myfund_price"
+                    android:layout_below="@+id/textView4"
+                    android:layout_marginStart="8dp"
+                    android:text="23.5"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size_huge"
+                    app:layout_constraintStart_toEndOf="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="@+id/tv_myfund_chicang" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_myfund_chicang"
+                    android:layout_alignBottom="@+id/tv_myfund_chicang"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/sd_gxjj"
+                    android:text="已投入："
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_myfund_chicang" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_myfund_chicang"
+                    android:layout_alignBottom="@+id/tv_myfund_chicang"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/tv_myfund_chicang"
+                    android:text="元"
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintStart_toEndOf="@+id/tv_myfund_chicang"
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/sd_gxjj"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/sd_gxjj"
+                    android:text="净值:"
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_myfund_price" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_myfund_price"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/sd_gxjj"
+                    android:text="收益:"
+                    android:textSize="@dimen/text_size_micro"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="271dp" />
+        </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

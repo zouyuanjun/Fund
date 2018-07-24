@@ -1,15 +1,9 @@
 package com.zou.fund.parse;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
-import com.zou.fund.data.Fund_rankingdata_bean;
 import com.zou.fund.sqlbean.SQL_lsjz;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.litepal.LitePal;
 import org.litepal.LitePalDB;
 import org.litepal.crud.DataSupport;
@@ -19,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import lecho.lib.hellocharts.model.AxisValue;
-import lecho.lib.hellocharts.model.PointValue;
 
 
 /**
