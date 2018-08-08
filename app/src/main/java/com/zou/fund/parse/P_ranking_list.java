@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
+/**格式化基金列表的数据
  * Created by 邹远君 on 2018/2/12 0012.
  */
 
@@ -51,6 +51,7 @@ public class P_ranking_list {
         while(m.find()) {
                arrayList.add(m.group());
         }
+        com.zou.fastlibrary.utils.Log.d("正则匹配完成","开始循环");
         for (String s:arrayList){
             String a[]=s.split(",");
             String code=a[0];
@@ -69,6 +70,7 @@ public class P_ranking_list {
             array_f.add(fund_rankingdata_bean);
 
         }
+        com.zou.fastlibrary.utils.Log.d("正则匹配完成","结束循环");
     DataSupport.saveAllAsync(array_f).listen(new org.litepal.crud.callback.SaveCallback() {
         @Override
         public void onFinish(boolean success) {

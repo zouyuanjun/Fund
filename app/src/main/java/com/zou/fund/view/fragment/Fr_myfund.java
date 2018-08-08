@@ -41,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.zou.fastlibrary.activity.LazyLoadFragment;
 import com.zou.fastlibrary.utils.EditTextUtil;
 import com.zou.fund.R;
 import com.zou.fund.persenter.MyFund;
@@ -63,10 +64,9 @@ import java.util.List;
  * Created by zouyu on 2018/1/16 0016.
  */
 
-public class Fr_myfund extends Fragment implements MyFundview{
+public class Fr_myfund extends LazyLoadFragment implements MyFundview{
     ArrayList<My_fund_bean> adapterarrayList = new ArrayList<>();
     Context context;
-    View rootView;
     RecyclerView recyclerView;
     EditText et_myfund_code;
     EditText et_myfund_num;
@@ -75,40 +75,37 @@ public class Fr_myfund extends Fragment implements MyFundview{
     Button ib_myfund_save;
     Button imb_add_myfund;
     Activity activity;
-    Network network;
-    SqlHelper sqlHelper;
     Rv_myfund_adapter adapter;
-    List<String> jjjz_list=new ArrayList<>();
-    List<SQL_myfund> querydatalist =new ArrayList<>(); //查询结果\
     PopupWindow window;
     MyFund myFund;
-
     EditText editText;   //搜索代码输入框
     ImageButton imageButton;  //搜索图标
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fr_myfund, container, false);
+    protected int setContentView() {
+        return R.layout.fr_myfund;
+    }
+
+    @Override
+    protected void lazyLoad() {
         context = this.getActivity();
         activity = getActivity();
-        editText=rootView.findViewById(R.id.ed_main_seach);
-        imb_add_myfund = rootView.findViewById(R.id.imb_add_myfund);
+        editText=findViewById(R.id.ed_main_seach);
+        imb_add_myfund = findViewById(R.id.imb_add_myfund);
         imb_add_myfund.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 add_fund_popwindows();
             }
         });
-        network = Network.getnetwork();
         myFund=new MyFund(this);
         myFund.getdata();
         adapterarrayList.clear();
         Fresco.getImagePipeline().clearCaches();
-        imageButton=rootView.findViewById(R.id.ib_main_seach);
+        imageButton=findViewById(R.id.ib_main_seach);
         editText.clearFocus();
-        InputMethodManager imm = (InputMethodManager)context. getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        EditTextUtil.hideKeyboard(context,editText);
+//        InputMethodManager imm = (InputMethodManager)context. getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -122,12 +119,11 @@ public class Fr_myfund extends Fragment implements MyFundview{
             }
         });
         initview();
-        return rootView;
-
     }
+
     public void initview() {
 
-        recyclerView = rootView.findViewById(R.id.rv_my_fund);
+        recyclerView =findViewById(R.id.rv_my_fund);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         // 设置布局管理器
         recyclerView.setLayoutManager(mLayoutManager);
@@ -166,23 +162,11 @@ public class Fr_myfund extends Fragment implements MyFundview{
                         AlertDialog alertDialog=builder.setMessage("买入").setView(editText).setNeutralButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
                                 double inputbuy=Double.parseDouble(editText.getText().toString());
                                 String fundcode=adapterarrayList.get(position).getMyfund_code();
-                                double charge=querydatalist.get(position).getMyfund_charge();
-                                double price=Double.parseDouble( jjjz_list.get(position));
-                                double buy=inputbuy*(1-charge/100);  //除去手续费的购买金额
-                                double newnum=buy/price;        //新购份数
-                                double allnum=querydatalist.get(position).getMyfund_num()+newnum;
-                                Log.d("myfund",querydatalist.get(position).getMyfund_num()+"原有"+ position+"购买分数"+newnum+"基金净值"+jjjz_list.get(position));
-                                double pcs=(querydatalist.get(position).getMyfund_cost()*querydatalist.get(position).getMyfund_num()+buy)/allnum;
-                                ContentValues values = new ContentValues();
-                                values.put("myfund_num", allnum);
-                                values.put("myfund_cost", pcs);
-                                Log.d("myfund","买入"+ allnum+"成本单价"+pcs);
-                                sqlHelper.updata(values,"myfund_code = ?",fundcode);
-                                querydatalist.clear();
-                                jjjz_list.clear();
-                                myFund.getdata();       //刷新数据
+                                double jjjz=Double.parseDouble( adapterarrayList.get(position).getMyfund_jjjz());
+                                myFund.buyfund(fundcode,inputbuy,jjjz);
                             }
                         }).setPositiveButton("取消", new DialogInterface.OnClickListener() {
                             @Override
@@ -201,8 +185,8 @@ public class Fr_myfund extends Fragment implements MyFundview{
      * 添加基金弹窗
      */
     public void add_fund_popwindows() {
-        final WindowManager.LayoutParams params=getActivity().getWindow().getAttributes();
-        params.alpha=0.7f;
+        WindowManager.LayoutParams params=getActivity().getWindow().getAttributes();
+        params.alpha=0.5f;
         getActivity().getWindow().setAttributes(params);
         View contentView = LayoutInflater.from(context).inflate(R.layout.popwindows_addfund, null, false);
         window = new PopupWindow(contentView, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
@@ -219,7 +203,15 @@ public class Fr_myfund extends Fragment implements MyFundview{
         et_myfund_charge.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         ib_myfund_save = contentView.findViewById(R.id.ib_myfund_save);
 
-
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                Log.d("windows","消失了");
+                WindowManager.LayoutParams params=getActivity().getWindow().getAttributes();
+                params.alpha=1f;
+                getActivity().getWindow().setAttributes(params);
+            }
+        });
         ib_myfund_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,8 +233,8 @@ public class Fr_myfund extends Fragment implements MyFundview{
                 }catch (NumberFormatException e){
                     Toast.makeText(getContext(),"信息填写不完整",Toast.LENGTH_SHORT).show();
                 }
-                params.alpha=1f;
-                getActivity().getWindow().setAttributes(params);
+
+
                 window.dismiss();
             }
         });
@@ -251,5 +243,9 @@ public class Fr_myfund extends Fragment implements MyFundview{
     public void refreshdate(My_fund_bean my_fund_bean) {
         adapterarrayList.add(my_fund_bean);
         adapter.notifyDataSetChanged();
+    }
+    @Override
+    public void refreshalldate() {
+        adapterarrayList.clear();
     }
 }

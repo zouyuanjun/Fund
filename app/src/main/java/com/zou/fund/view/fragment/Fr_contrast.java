@@ -66,9 +66,6 @@ public class Fr_contrast extends Fragment {
        // network.Loadhtpp(handler,url,what);
         return rootView;
     }
-
-
-
     private void initData() {
         mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         rv_contrast_adapter = new Rv_contrast_adapter(getData());

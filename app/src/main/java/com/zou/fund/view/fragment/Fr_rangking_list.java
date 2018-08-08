@@ -69,7 +69,6 @@ public class Fr_rangking_list extends Fragment {
         context=this.getActivity();
         return rootView;
     }
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -78,7 +77,6 @@ public class Fr_rangking_list extends Fragment {
             initdata();
         }
     }
-
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -269,7 +267,6 @@ public class Fr_rangking_list extends Fragment {
                     }
                     if (f.getDay()<0){
                         fundxdnum++;
-                        Log.d("ddd",fundxdnum+"");
                     }
                 }
                 break;

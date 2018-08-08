@@ -40,11 +40,17 @@ public class MyFund implements MyFundview {
         fr_myfund.refreshdate(my_fund_bean);
     }
 
+    @Override
+    public void refreshalldate() {
+        fr_myfund.refreshalldate();
+    }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             String s1 = (String) msg.obj;
+            int what=msg.what;
             P_myfund my_fund = new P_myfund(s1);
             My_fund_bean my_fund_bean =my_fund.parse();//获取解析出来的基金数据
             for (SQL_myfund sql_myfund : sqLiteList) {
@@ -68,7 +74,10 @@ public class MyFund implements MyFundview {
                     my_fund_bean.setMyfund_worth(myfund_worth);
                     my_fund_bean.setMyfund_cost(sql_myfund.getMyfund_cost());
                     my_fund_bean.setMyfund_yield(yieldstring);
+
                     refreshdate(my_fund_bean);
+
+
                     Log.d("解析结果", "基金名称" + my_fund_bean.getMyfund_name() + my_fund_bean.getMyfund_code() + my_fund_bean.getMyfund_worth() +
                             my_fund_bean.getMyfund_cost() + my_fund_bean.getMyfund_imurl() + my_fund_bean.getMyfund_type());
                     break;
@@ -109,8 +118,8 @@ public class MyFund implements MyFundview {
             sqlHelper.updata(values, "myfund_code = ?", inputcode);
             sqLiteList.clear();
             sqLiteList = (List<SQL_myfund>) sqlHelper.querydata();
-            String url = "http://fund.eastmoney.com/" + inputcode + ".html";
-            network.Loadhtpp(handler, url, 1);
+            refreshalldate();   //通知activity清空list
+            getdata();
         }
         if (flg == 1) {   //不存在则新建
             SQL_myfund sql_myfund = new SQL_myfund(inputcode, inputnum, inputcost, inputcharge);
@@ -118,7 +127,7 @@ public class MyFund implements MyFundview {
                 sqLiteList.clear();
                 sqLiteList = (List<SQL_myfund>) sqlHelper.querydata();
                 String url = "http://fund.eastmoney.com/" + inputcode + ".html";
-                network.Loadhtpp(handler, url, 1);
+                network.Loadhtpp(handler, url, 2);
                 issave=true;
             } else {
                 issave=false;
@@ -126,12 +135,42 @@ public class MyFund implements MyFundview {
         }
         return issave;
     }
-
     public void deletefund(String fundcode){
         sqlHelper.delete("myfund_code=?",fundcode);
     }
 
-    public void buyfund(){
+    /**
+     * 追加买入基金
+     * @param fundcode  要买入的基金
+     * @param inputbuy    买入金额
+     */
+    public void buyfund(String fundcode, double inputbuy,double jjjz){
 
+
+
+        double charge = 0;    //手续费
+        double nownum=0;
+        double myfund_cost=0;
+        for ( SQL_myfund sql_myfund:sqLiteList ){
+            if (sql_myfund.getMyfund_code().equals(fundcode)){
+                charge=sql_myfund.getMyfund_charge();
+                nownum=sql_myfund.getMyfund_num();
+                myfund_cost=sql_myfund.getMyfund_cost();
+            }
+        }
+        double buy=inputbuy*(1-charge/100);  //除去手续费的购买金额
+        double newnum=buy/jjjz;        //新购份数
+        double allnum=newnum+nownum;
+        //计算平均单价
+        double pcs=myfund_cost*nownum+inputbuy/allnum;
+        ContentValues values = new ContentValues();
+        values.put("myfund_num", allnum);
+        values.put("myfund_cost", pcs);
+        Log.d("myfund","买入"+ allnum+"成本单价"+pcs);
+        sqlHelper.updata(values,"myfund_code = ?",fundcode);
+        sqLiteList.clear();
+        sqLiteList = (List<SQL_myfund>) sqlHelper.querydata();
+        refreshalldate();   //通知activity清空list
+        getdata();
     }
 }

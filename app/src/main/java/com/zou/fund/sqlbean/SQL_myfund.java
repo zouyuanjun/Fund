@@ -12,11 +12,9 @@ public class SQL_myfund extends DataSupport {
      */
     String myfund_code;
     double myfund_num;          //分数
-    double myfund_cost;
-    /**
-     * 费率
-     */
-    double myfund_charge;     //费率
+    double myfund_cost;   //购买的基金单价
+
+    double myfund_charge;     //手续费率
 
     public SQL_myfund(String myfund_code, double myfund_num, double myfund_cost, double myfund_charge) {
         this.myfund_code = myfund_code;

@@ -17,6 +17,9 @@ import java.util.List;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 
+/**
+ * 创建带tab标签的导航页
+ */
 public class HomeActivity extends BaseTabActivity {
     List<String> textlist=new ArrayList<>();
     private List<Fragment> fragmentList=new ArrayList<>();
